@@ -31,7 +31,7 @@ class_name Motion
 #	METHODS
 #-------------------------------------------------------------------------------
 
-## 指定したノードのプロパティに対しバネ (単振動) アニメーションを開始します。
+## プロパティに対しバネ (減衰振動) アニメーションをスケジュールします。
 static func spring(
 	object: Node,
 	property_name: String,
@@ -55,7 +55,7 @@ static func spring(
 		trans_init,
 		_set_preset)
 
-## 指定したノードのメソッドに対しバネ (単振動) アニメーションを開始します。
+## メソッドに対しバネ (減衰振動) アニメーションをスケジュールします。
 static func spring_method(
 	object: Node,
 	method_name: String,
@@ -82,7 +82,7 @@ static func spring_method(
 		trans_init,
 		_set_preset)
 
-## 指定したノードのプロパティに対し滑走 (指数関数的減衰) アニメーションを開始します。
+## プロパティに対し滑走 (指数関数減衰) アニメーションをスケジュールします。
 static func glide(
 	object: Node,
 	property_name: String,
@@ -106,7 +106,7 @@ static func glide(
 		trans_init,
 		_set_preset)
 
-## 指定したノードのメソッドに対し滑走 (指数関数的減衰) アニメーションを開始します。
+## メソッドに対し滑走 (指数関数減衰) アニメーションをスケジュールします。
 static func glide_method(
 	object: Node,
 	method_name: String,
@@ -133,7 +133,7 @@ static func glide_method(
 		trans_init,
 		_set_preset)
 
-## 指定したノードのプロパティに対し [Tween] アニメーションを開始します。
+## プロパティに対し Tween アニメーションをスケジュールします。
 static func tween(
 	object: Node,
 	property_name: String,
@@ -157,7 +157,7 @@ static func tween(
 		trans_init,
 		_set_preset)
 
-## 指定したノードのメソッドに対し [Tween] アニメーションを開始します。
+## メソッドに対し Tween アニメーションをスケジュールします。
 static func tween_method(
 	object: Node,
 	method_name: String,
@@ -184,7 +184,7 @@ static func tween_method(
 		trans_init,
 		_set_preset)
 
-## 指定したノードのプロパティに対するアニメーションを停止します。
+## プロパティに対しアクティブになっているアニメーションをキャンセルします。
 static func cancel(
 	object: Node,
 	property_name: String,
@@ -208,7 +208,7 @@ static func cancel(
 		trans_init,
 		_set_preset)
 
-## 指定したノードのメソッドに対するアニメーションを停止します。
+## メソッドに対しアクティブになっているアニメーションをキャンセルします。
 static func cancel_method(
 	object: Node,
 	method_name: String,
