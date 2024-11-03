@@ -25,18 +25,19 @@
 #
 #-------------------------------------------------------------------------------
 
+## キャンセルを構成するためのメソッドを含むクラスです。
 class_name CancelMotionExpression extends MotionExpression
 
 #-------------------------------------------------------------------------------
 #	METHODS
 #-------------------------------------------------------------------------------
 
-## プリセットを読み込みます。
+## このキャンセルに対しプリセットを適用します。
 func preset(value: String) -> CancelMotionExpression:
 	_set_preset.call(value, _trans_init)
 	return self
 
-## 開始までの遅延を設定します。
+## このキャンセルを開始するまでの遅延を設定します。
 func delay(value: float) -> CancelMotionExpression:
 	if value < 0.0:
 		push_warning("'value' must be greater than or equal to zero: ", value)
@@ -44,12 +45,12 @@ func delay(value: float) -> CancelMotionExpression:
 	_trans_init.delay = value
 	return self
 
-## プロセスフレームで処理するよう設定します。
+## このキャンセルをアイドルフレームで処理するよう設定します。
 func process_default() -> CancelMotionExpression:
 	_trans_init.process = XDUT_MotionTimer.PROCESS_DEFAULT
 	return self
 
-## 物理フレームで処理するよう設定します。
+## このキャンセルを物理フレームで処理するよう設定します。
 func process_physics() -> CancelMotionExpression:
 	_trans_init.process = XDUT_MotionTimer.PROCESS_PHYSICS
 	return self

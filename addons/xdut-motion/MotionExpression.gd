@@ -25,21 +25,23 @@
 #
 #-------------------------------------------------------------------------------
 
+## アニメーションを構成するためのメソッドを含むクラスです。[br]
+## `Awaitable` を継承し XDUT Task で待機することができます。
 class_name MotionExpression extends Awaitable
 
 #-------------------------------------------------------------------------------
 #	METHODS
 #-------------------------------------------------------------------------------
 
-## このトランジションの状態を取得します。
+## このアニメーションの状態を取得します。
 func get_state() -> int:
 	return _completion.get_state()
 
-## このトランジションが完了するまで待機します。
+## このアニメーションが完了するまで待機します。
 func wait(cancel: Cancel = null) -> Variant:
 	return await _completion.wait(cancel)
 
-## プリセットを読み込みます。
+## このアニメーションに対しプリセットを適用します。
 func preset(value: String) -> MotionExpression:
 	#
 	# 継承先で実装する必要があります。
@@ -48,7 +50,7 @@ func preset(value: String) -> MotionExpression:
 	assert(false)
 	return null
 
-## 開始までの遅延を設定します。
+## このアニメーションを開始するまでの遅延を設定します。
 func delay(value: float) -> MotionExpression:
 	#
 	# 継承先で実装する必要があります。
@@ -57,7 +59,7 @@ func delay(value: float) -> MotionExpression:
 	assert(false)
 	return null
 
-## プロセスフレームで処理するよう設定します。
+## このアニメーションをアイドルフレームで処理するよう設定します。
 func process_default() -> MotionExpression:
 	#
 	# 継承先で実装する必要があります。
@@ -66,7 +68,7 @@ func process_default() -> MotionExpression:
 	assert(false)
 	return null
 
-## 物理フレームで処理するよう設定します。
+## このアニメーションを物理フレームで処理するよう設定します。
 func process_physics() -> MotionExpression:
 	#
 	# 継承先で実装する必要があります。
