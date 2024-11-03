@@ -85,8 +85,13 @@ func next(
 	#	state.set_final_position(_final_position)
 	#	state.set_initial_velocity(_initial_velocity)
 
-	_total_ticks += delta_ticks
+	#
+	# Adam Miskiewicz 氏 (@skevy) による wobble でのオシレータ実装のポートです。
+	#
+	# //github.com/skevy/wobble/blob/develop/src/index.ts
+	#
 
+	_total_ticks += delta_ticks
 	var total := _total_ticks / 1000.0
 
 	var all_at_rest := true
