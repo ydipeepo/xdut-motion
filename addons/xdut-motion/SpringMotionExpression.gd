@@ -25,18 +25,19 @@
 #
 #-------------------------------------------------------------------------------
 
+## バネアニメーションを構成するためのメソッドを含むクラスです。
 class_name SpringMotionExpression extends MotionExpression
 
 #-------------------------------------------------------------------------------
 #	METHODS
 #-------------------------------------------------------------------------------
 
-## プリセットを読み込みます。
+## このアニメーションに対しプリセットを適用します。
 func preset(value: String) -> SpringMotionExpression:
 	_set_preset.call(value, _trans_init)
 	return self
 
-## 開始までの遅延を設定します。
+## このアニメーションを開始するまでの遅延を設定します。
 func delay(value: float) -> SpringMotionExpression:
 	if value < 0.0:
 		push_warning("'value' must be greater than or equal to zero: ", value)
@@ -44,17 +45,17 @@ func delay(value: float) -> SpringMotionExpression:
 	_trans_init.delay = value
 	return self
 
-## プロセスフレームで処理するよう設定します。
+## このアニメーションをアイドルフレームで処理するよう設定します。
 func process_default() -> SpringMotionExpression:
 	_trans_init.process = XDUT_MotionTimer.PROCESS_DEFAULT
 	return self
 
-## 物理フレームで処理するよう設定します。
+## このアニメーションを物理フレームで処理するよう設定します。
 func process_physics() -> SpringMotionExpression:
 	_trans_init.process = XDUT_MotionTimer.PROCESS_PHYSICS
 	return self
 
-## 剛性を設定します。
+## このアニメーションの剛性を設定します。
 func set_stiffness(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning("'value' must be greater than zero: ", value)
@@ -62,7 +63,7 @@ func set_stiffness(value: float) -> SpringMotionExpression:
 	_trans_init.stiffness = value
 	return self
 
-## 減衰を設定します。
+## このアニメーションの減衰を設定します。
 func set_damping(value: float) -> SpringMotionExpression:
 	if value < 0.0:
 		push_warning("'value' must be greater than or equal to zero: ", value)
@@ -70,7 +71,7 @@ func set_damping(value: float) -> SpringMotionExpression:
 	_trans_init.damping = value
 	return self
 
-## 質量を設定します。
+## このアニメーションの質量を設定します。
 func set_mass(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning("'value' must be greater than zero: ", value)
@@ -78,7 +79,7 @@ func set_mass(value: float) -> SpringMotionExpression:
 	_trans_init.mass = value
 	return self
 
-## 休止速度を設定します。
+## このアニメーションを休止させる位置デルタを設定します。
 func set_rest_speed(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning("'value' must be greater than zero: ", value)
@@ -86,7 +87,7 @@ func set_rest_speed(value: float) -> SpringMotionExpression:
 	_trans_init.rest_speed = value
 	return self
 
-## 休止デルタを設定します。
+## このアニメーションを休止させる速度を設定します。
 func set_rest_delta(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning("'value' must be greater than zero: ", value)
@@ -94,27 +95,27 @@ func set_rest_delta(value: float) -> SpringMotionExpression:
 	_trans_init.rest_delta = value
 	return self
 
-## 過減衰を制限します。
+## このアニメーションが過減衰とならないよう制限します。
 func limit_overdamping(value := true) -> SpringMotionExpression:
 	_trans_init.limit_overdamping = value
 	return self
 
-## オーバーシュートを制限します。
+## このアニメーションがオーバーシュートしないよう制限します。
 func limit_overshooting(value := true) -> SpringMotionExpression:
 	_trans_init.limit_overshooting = value
 	return self
 
-## このトランジションの開始位置を設定します。
+## このアニメーションの初期位置を設定します。
 func from(value: Variant) -> SpringMotionExpression:
 	_trans_init.initial_position = value
 	return self
 
-## このトランジションの終了位置を設定します。
+## このアニメーションの最終位置を設定します。
 func to(value: Variant) -> SpringMotionExpression:
 	_trans_init.final_position = value
 	return self
 
-## このトランジションの開始速度を設定します。
+## このアニメーションの初期速度を設定します。
 func by(value: Variant) -> SpringMotionExpression:
 	_trans_init.initial_velocity = value
 	return self

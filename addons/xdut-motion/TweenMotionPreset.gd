@@ -25,12 +25,14 @@
 #
 #-------------------------------------------------------------------------------
 
+## Tween アニメーションのプリセットを定義するためのリソースです。
 class_name TweenMotionPreset extends MotionPreset
 
 #-------------------------------------------------------------------------------
 #	PROPERTIES
 #-------------------------------------------------------------------------------
 
+## アニメーションのトランジション関数。
 @export_enum(
 	"Linear",
 	"Sine",
@@ -44,12 +46,14 @@ class_name TweenMotionPreset extends MotionPreset
 	"Bounce",
 	"Back") var trans: int = XDUT_TweenMotionTransition.DEFAULT_TRANS_TYPE
 
+## アニメーションのイージング関数。
 @export_enum(
 	"In",
 	"Out",
 	"In and Out",
 	"Out and In") var ease: int = XDUT_TweenMotionTransition.DEFAULT_EASE_TYPE
 
+## アニメーションの期間。
 @export_range(0.0, 10.0, 0.1, "or_greater") var duration := XDUT_TweenMotionTransition.DEFAULT_DURATION
 
 #-------------------------------------------------------------------------------

@@ -25,12 +25,14 @@
 #
 #-------------------------------------------------------------------------------
 
+## アニメーションのプリセットを定義するための基底リソースです。
 class_name MotionPreset extends Resource
 
 #-------------------------------------------------------------------------------
 #	PROPERTIES
 #-------------------------------------------------------------------------------
 
+## プリセット名。
 @export var name: String:
 	get:
 		return _name
@@ -40,8 +42,10 @@ class_name MotionPreset extends Resource
 			return
 		_name = value
 
+## アニメーションを開始するまでの遅延。
 @export_range(0.0, 60.0, 0.1, "or_greater", "suffix:s") var delay := 0.0
 
+## アニメーションを処理するフレームタイプ。
 @export_enum("Default", "Physics") var process: int = XDUT_MotionTimer.PROCESS_DEFAULT
 
 #-------------------------------------------------------------------------------

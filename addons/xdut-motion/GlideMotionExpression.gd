@@ -25,19 +25,19 @@
 #
 #-------------------------------------------------------------------------------
 
-## 滑空アニメーションを構成するためのメソッドを含むクラスです。
+## 滑走アニメーションを構成するためのメソッドを含むクラスです。
 class_name GlideMotionExpression extends MotionExpression
 
 #-------------------------------------------------------------------------------
 #	METHODS
 #-------------------------------------------------------------------------------
 
-## プリセットを読み込みます。
+## このアニメーションに対しプリセットを適用します。
 func preset(value: String) -> GlideMotionExpression:
 	_set_preset.call(value, _trans_init)
 	return self
 
-## 開始までの遅延を設定します。
+## このアニメーションを開始するまでの遅延を設定します。
 func delay(value: float) -> GlideMotionExpression:
 	if value < 0.0:
 		push_warning("'value' must be greater than or equal to zero: ", value)
@@ -45,17 +45,17 @@ func delay(value: float) -> GlideMotionExpression:
 	_trans_init.delay = value
 	return self
 
-## プロセスフレームで処理するよう設定します。
+## このアニメーションをアイドルフレームで処理するよう設定します。
 func process_default() -> GlideMotionExpression:
 	_trans_init.process = XDUT_MotionTimer.PROCESS_DEFAULT
 	return self
 
-## 物理フレームで処理するよう設定します。
+## このアニメーションを物理フレームで処理するよう設定します。
 func process_physics() -> GlideMotionExpression:
 	_trans_init.process = XDUT_MotionTimer.PROCESS_PHYSICS
 	return self
 
-## 崩壊定数を設定します。
+## このアニメーションの崩壊定数を設定します。
 func set_power(value: float) -> GlideMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning("'value' must be greater than zero: ", value)
@@ -63,7 +63,7 @@ func set_power(value: float) -> GlideMotionExpression:
 	_trans_init.power = value
 	return self
 
-## 時定数を設定します。
+## このアニメーションの時定数を設定します。
 func set_time_constant(value: float) -> GlideMotionExpression:
 	if value < 0.0:
 		push_warning("'value' must be greater than or equal to zero: ", value)
@@ -71,7 +71,7 @@ func set_time_constant(value: float) -> GlideMotionExpression:
 	_trans_init.time_constant = value
 	return self
 
-## 休止デルタを設定します。
+## このアニメーションを休止させる位置デルタを設定します。
 func set_rest_delta(value: float) -> GlideMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning("'value' must be greater than zero: ", value)
@@ -79,29 +79,29 @@ func set_rest_delta(value: float) -> GlideMotionExpression:
 	_trans_init.rest_delta = value
 	return self
 
-## 速度を重視するよう設定します。
+## このアニメーションを速度を重視するよう設定します。
 func prefer_velocity() -> GlideMotionExpression:
 	_trans_init.prefer = XDUT_GlideMotionTransition.PREFER_VELOCITY
 	return self
 
-## 位置を重視するよう設定します。
+## このアニメーションを位置を重視するよう設定します。
 func prefer_position() -> GlideMotionExpression:
 	_trans_init.prefer = XDUT_GlideMotionTransition.PREFER_POSITION
 	return self
 
-## このトランジションの開始位置を設定します。
+## このアニメーションの初期位置を設定します。
 func from(value: Variant) -> GlideMotionExpression:
 	_trans_init.initial_position = value
 	return self
 
-## このトランジションの終了位置を設定します。
+## このアニメーションの最終位置を設定します。
 func to(value: Variant, auto_prefer := true) -> GlideMotionExpression:
 	_trans_init.final_position = value
 	if auto_prefer:
 		_trans_init.prefer = XDUT_GlideMotionTransition.PREFER_POSITION
 	return self
 
-## このトランジションの開始速度を設定します。
+## このアニメーションの初期速度を設定します。
 func by(value: Variant, auto_prefer := true) -> GlideMotionExpression:
 	_trans_init.initial_velocity = value
 	if auto_prefer:

@@ -25,6 +25,7 @@
 #
 #-------------------------------------------------------------------------------
 
+## プリセットを XDUT Motion に登録するためのノードです。
 @icon("MotionPresetBank.png")
 class_name MotionPresetBank extends Node
 
@@ -32,7 +33,7 @@ class_name MotionPresetBank extends Node
 #	PROPERTIES
 #-------------------------------------------------------------------------------
 
-## [MotionPreset] のリスト。
+## [MotionPreset] のリスト。インスペクターから操作します。
 @export var presets: Array[MotionPreset] = []
 
 #-------------------------------------------------------------------------------
