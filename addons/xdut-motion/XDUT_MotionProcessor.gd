@@ -179,7 +179,7 @@ func _free(state: Variant = null) -> void:
 func _init(canonical: Node) -> void:
 	assert(canonical != null)
 	_timer = canonical.get_timer()
-	_retention_duration_ticks = canonical.get_retention_duration()
+	_retention_duration_ticks = canonical.get_retention_duration_ticks()
 
 func _ready() -> void:
 	set_process(false)
