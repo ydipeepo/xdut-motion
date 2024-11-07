@@ -105,6 +105,17 @@ func _get_processor(target: Node, target_key: String) -> XDUT_MotionProcessor:
 			return processor
 	return null
 
+func _collect_preset_banks(
+	pivot_node: Node,
+	preset_banks: Array[MotionPresetBank]) -> void:
+
+	for node: Node in pivot_node.get_children():
+		if node is MotionPresetBank:
+			preset_banks.push_back(node)
+	for node: Node in pivot_node.get_children():
+		if node is not MotionPresetBank:
+			_collect_preset_banks(node, preset_banks)
+
 func _enter_tree() -> void:
 	_preset_mapper = XDUT_MotionPresetMapper.new()
 	_preset_mapper.add(SpringMotionPreset.new("standard", 170.0, 26.0))
@@ -154,6 +165,12 @@ func _enter_tree() -> void:
 	_preset_mapper.add(TweenMotionPreset.new("bounce_out", Tween.TRANS_BOUNCE, Tween.EASE_OUT))
 	_preset_mapper.add(TweenMotionPreset.new("bounce_inout", Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT))
 	_preset_mapper.add(TweenMotionPreset.new("bounce_outin", Tween.TRANS_BOUNCE, Tween.EASE_OUT_IN))
+
+	var preset_banks: Array[MotionPresetBank] = []
+	_collect_preset_banks(get_tree().root, preset_banks)
+	for preset_bank: MotionPresetBank in preset_banks:
+		preset_bank.map_presets(get_preset_mapper())
+
 	_timer = XDUT_MotionTimer.new()
 
 func _exit_tree() -> void:
