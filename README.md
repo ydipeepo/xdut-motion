@@ -1,51 +1,45 @@
+<br />
+
+English | [日本語](README.ja_JP.md)
 
 <br />
 
 # XDUT Motion
 
-継続可能なバネや滑走アニメーション、加速度の情報を持った Tween を含む、<br />
-ノードをアニメーションさせるためのアドオンです。
+This Add-on animates nodes with Tween, smooth reschedulable spring and gliding.
 
-<br />
+## Quick start
 
-## インストール
+#### Checking the demo
 
-#### デモを確認する場合
+1. `git clone https://github.com/ydipeepo/xdut-motion.git` or [download release](https://github.com/ydipeepo/xdut-motion/release).
+2. Then open XDUT Motion and run it.
 
-1. `git clone https://github.com/ydipeepo/xdut-motion.git` し、
-2. プロジェクトを開いて実行します。
+#### Installation
 
-#### プロジェクトにアドオンを追加する場合
-
-1. `git clone https://github.com/ydipeepo/xdut-motion.git` し、
-2. `addons/xdut-motion` をプロジェクトに複製し、
-3. プロジェクト設定から XDUT Task を有効にします。
+1. `git clone https://github.com/ydipeepo/xdut-motion.git` or [download release](https://github.com/ydipeepo/xdut-motion/release).
+2. Then copy `addons/xdut-motion` directory into your project.
+3. And enable XDUT Motion from your project settings.
 
 > [!TIP]
-> このアドオンは Godot Engine 及び Redot Engine に対応しています。
+> This add-on is compat with Godot Engine and Redot Engine.
 >
 > * Godot Engine 4.3 ~
 > * Redot Engine 4.3 Beta 2 ~
 
 > [!IMPORTANT]
-> このアドオンの動作には [XDUT Task](https://github.com/ydipeepo/xdut-task) が必要です。
+> This addon requires [XDUT Task](https://github.com/ydipeepo/xdut-task).
 
 <br />
 
-## リファレンス
+## Reference
 
-📖 [Wiki](https://github.com/ydipeepo/xdut-motion/wiki) にまとめてあります。
-
-<br />
-
-## バグの報告など
-
-バグの報告やドキュメント翻訳、改善の提案など歓迎いたします。
+📖 [Wiki](https://github.com/ydipeepo/xdut-motion/wiki) (Google Translated)
 
 <br />
 
-## ライセンス
+## License
 
-🔗 [MIT](https://github.com/ydipeepo/xdut-motion/blob/main/LICENSE) ライセンスです。
+🔗 [MIT](https://github.com/ydipeepo/xdut-motion/blob/main/LICENSE)
 
 <br />
