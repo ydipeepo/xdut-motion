@@ -45,15 +45,21 @@ func delay(value: float) -> CancelMotionExpression:
 	_trans_init.delay = value
 	return self
 
+## このキャンセルを処理するフレームを設定します。
+func set_process(value: int) -> CancelMotionExpression:
+	match value:
+		XDUT_MotionTimer.PROCESS_DEFAULT, \
+		XDUT_MotionTimer.PROCESS_PHYSICS:
+			_trans_init.process = value
+	return self
+
 ## このキャンセルをアイドルフレームで処理するよう設定します。
 func process_default() -> CancelMotionExpression:
-	_trans_init.process = XDUT_MotionTimer.PROCESS_DEFAULT
-	return self
+	return super.process_default()
 
 ## このキャンセルを物理フレームで処理するよう設定します。
 func process_physics() -> CancelMotionExpression:
-	_trans_init.process = XDUT_MotionTimer.PROCESS_PHYSICS
-	return self
+	return super.process_physics()
 
 ## 最終位置を設定します。
 func at(value: Variant) -> CancelMotionExpression:

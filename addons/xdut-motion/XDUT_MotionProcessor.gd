@@ -107,6 +107,11 @@ func _attach_core() -> void:
 	_attaching_trans_init = null
 	_attaching_completion = null
 
+	if _completion_wref != null:
+		var last_completion := _completion_wref.get_ref() as XDUT_MotionCompletion
+		if last_completion != null:
+			last_completion.release_complete()
+
 	_completion_wref = null
 	_retention_reminder_ticks = _retention_duration_ticks
 

@@ -37,6 +37,15 @@ class_name MotionExpression extends Awaitable
 func get_state() -> int:
 	return _completion.get_state()
 
+## 遅延が設定されているかを取得します。
+func has_delay() -> bool:
+	#
+	# 継承先で実装する必要があります。
+	#
+	
+	assert(false)
+	return false
+
 ## このアニメーションが完了するまで待機します。
 func wait(cancel: Cancel = null) -> Variant:
 	return await _completion.wait(cancel)
@@ -59,23 +68,22 @@ func delay(value: float) -> MotionExpression:
 	assert(false)
 	return null
 
-## このアニメーションをアイドルフレームで処理するよう設定します。
-func process_default() -> MotionExpression:
+## このアニメーションを処理するフレームを設定します。
+func set_process(value: int) -> MotionExpression:
 	#
 	# 継承先で実装する必要があります。
 	#
 	
 	assert(false)
-	return null
+	return self
+
+## このアニメーションをアイドルフレームで処理するよう設定します。
+func process_default() -> MotionExpression:
+	return set_process(XDUT_MotionTimer.PROCESS_DEFAULT)
 
 ## このアニメーションを物理フレームで処理するよう設定します。
 func process_physics() -> MotionExpression:
-	#
-	# 継承先で実装する必要があります。
-	#
-	
-	assert(false)
-	return null
+	return set_process(XDUT_MotionTimer.PROCESS_PHYSICS)
 
 #-------------------------------------------------------------------------------
 

@@ -45,15 +45,21 @@ func delay(value: float) -> GlideMotionExpression:
 	_trans_init.delay = value
 	return self
 
+## このアニメーションを処理するフレームを設定します。
+func set_process(value: int) -> GlideMotionExpression:
+	match value:
+		XDUT_MotionTimer.PROCESS_DEFAULT, \
+		XDUT_MotionTimer.PROCESS_PHYSICS:
+			_trans_init.process = value
+	return self
+
 ## このアニメーションをアイドルフレームで処理するよう設定します。
 func process_default() -> GlideMotionExpression:
-	_trans_init.process = XDUT_MotionTimer.PROCESS_DEFAULT
-	return self
+	return super.process_default()
 
 ## このアニメーションを物理フレームで処理するよう設定します。
 func process_physics() -> GlideMotionExpression:
-	_trans_init.process = XDUT_MotionTimer.PROCESS_PHYSICS
-	return self
+	return super.process_default()
 
 ## このアニメーションの崩壊定数を設定します。
 func set_power(value: float) -> GlideMotionExpression:
