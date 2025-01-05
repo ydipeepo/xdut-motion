@@ -85,6 +85,14 @@ func set_rest_delta(value: float) -> GlideMotionExpression:
 	_trans_init.rest_delta = value
 	return self
 
+## このアニメーションが何を重視するか設定します。
+func set_prefer(value: int) -> GlideMotionExpression:
+	match value:
+		XDUT_GlideMotionTransition.PREFER_VELOCITY, \
+		XDUT_GlideMotionTransition.PREFER_POSITION:
+			_trans_init.prefer = value
+	return self
+
 ## このアニメーションを速度を重視するよう設定します。
 func prefer_velocity() -> GlideMotionExpression:
 	_trans_init.prefer = XDUT_GlideMotionTransition.PREFER_VELOCITY
