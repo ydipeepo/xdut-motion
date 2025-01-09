@@ -25,10 +25,10 @@ This add-on animates nodes with Tween, smooth reschedulable spring and gliding.
 > This add-on is compat with Godot Engine and Redot Engine.
 >
 > * Godot Engine 4.3 ~
-> * Redot Engine 4.3 Beta 2 ~
+> * Redot Engine 4.3 ~
 
 > [!IMPORTANT]
-> This addon requires [XDUT Task](https://github.com/ydipeepo/xdut-task).
+> This addon requires [XDUT Task](https://github.com/ydipeepo/xdut-task) installed.
 
 <br />
 
@@ -40,6 +40,6 @@ This add-on animates nodes with Tween, smooth reschedulable spring and gliding.
 
 ## License
 
-🔗 [MIT](https://github.com/ydipeepo/xdut-motion/blob/main/LICENSE)
+🔗 [MIT](https://github.com/ydipeepo/xdut-motion/blob/main/LICENSE.md)
 
 <br />
