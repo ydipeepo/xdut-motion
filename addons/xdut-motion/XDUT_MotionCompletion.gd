@@ -30,7 +30,7 @@ func wait(cancel: Cancel = null) -> void:
 	if _state == Awaitable.STATE_PENDING:
 		_state = Awaitable.STATE_PENDING_WITH_WAITERS
 	if _state == Awaitable.STATE_PENDING_WITH_WAITERS:
-		if cancel != null:
+		if is_instance_valid(cancel) and not cancel.requested.is_connected(release_cancel):
 			await _wait_with_exotic_cancel(cancel)
 		else:
 			await _wait()
