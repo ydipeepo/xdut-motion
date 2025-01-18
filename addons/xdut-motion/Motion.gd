@@ -234,7 +234,7 @@ static func _attach(
 	target: Node,
 	target_key: String,
 	trans_init: XDUT_MotionTransitionInit,
-	cancel: Cancel) -> XDUT_MotionCompletion:
+	cancel: Cancel) -> Awaitable:
 
 	var canonical := _get_canonical()
 	return null if canonical == null else canonical.attach(
@@ -247,7 +247,7 @@ static func _attach_method(
 	target: Node,
 	target_key: StringName,
 	trans_init: XDUT_MotionTransitionInit,
-	cancel: Cancel) -> XDUT_MotionCompletion:
+	cancel: Cancel) -> Awaitable:
 
 	var canonical := _get_canonical()
 	return null if canonical == null else canonical.attach_method(

@@ -40,6 +40,6 @@ This add-on animates nodes with Tween, smooth reschedulable spring and gliding.
 
 ## License
 
-🔗 [MIT](https://github.com/ydipeepo/xdut-motion/blob/main/LICENSE.md)
+🔗 [MIT](https://github.com/ydipeepo/xdut-motion/blob/main/LICENSE)
 
 <br />
