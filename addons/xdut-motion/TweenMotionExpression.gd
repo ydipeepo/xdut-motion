@@ -128,7 +128,7 @@ var _trans_init: XDUT_TweenMotionTransitionInit
 var _set_preset: Callable
 
 func _init(
-	completion: XDUT_MotionCompletion,
+	completion: Awaitable,
 	trans_init: XDUT_TweenMotionTransitionInit,
 	set_preset: Callable) -> void:
 

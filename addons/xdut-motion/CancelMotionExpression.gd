@@ -45,7 +45,7 @@ var _trans_init: XDUT_CancelMotionTransitionInit
 var _set_preset: Callable
 
 func _init(
-	completion: XDUT_MotionCompletion,
+	completion: Awaitable,
 	trans_init: XDUT_CancelMotionTransitionInit,
 	set_preset: Callable) -> void:
 

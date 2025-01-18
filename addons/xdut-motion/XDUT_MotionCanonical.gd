@@ -11,7 +11,7 @@ func get_timer() -> XDUT_MotionTimer:
 	return _timer
 
 func get_retention_duration() -> float:
-	return ProjectSettings.get_setting("xdut/motion/processor/retention_duration", 5.0)
+	return _processor_retention_duration
 
 func get_retention_duration_ticks() -> int:
 	return roundi(get_retention_duration() * 1000.0)
@@ -20,13 +20,13 @@ func attach(
 	target: Node,
 	target_key: String,
 	trans_init: XDUT_MotionTransitionInit,
-	cancel: Cancel) -> XDUT_MotionCompletion:
+	cancel: Cancel) -> Awaitable:
 
 	assert(target != null)
 	assert(not target_key.is_empty())
 	assert(trans_init != null)
 
-	var completion := XDUT_MotionCompletion.new(cancel)
+	var completion := TaskBase.new(cancel, &"MotionExpression")
 	if completion.is_pending:
 		var processor := _get_processor(target, target_key)
 		if processor == null:
@@ -42,13 +42,13 @@ func attach_method(
 	target: Node,
 	target_key: StringName,
 	trans_init: XDUT_MotionTransitionInit,
-	cancel: Cancel) -> XDUT_MotionCompletion:
+	cancel: Cancel) -> Awaitable:
 
 	assert(target != null)
 	assert(not target_key.is_empty())
 	assert(trans_init != null)
 
-	var completion := XDUT_MotionCompletion.new(cancel)
+	var completion := TaskBase.new(cancel, &"MotionExpression")
 	if completion.is_pending:
 		var processor := _get_processor(target, target_key)
 		if processor == null:
@@ -62,6 +62,7 @@ func attach_method(
 
 #-------------------------------------------------------------------------------
 
+var _processor_retention_duration: float
 var _preset_mapper: XDUT_MotionPresetMapper
 var _timer: XDUT_MotionTimer
 
@@ -90,6 +91,8 @@ func _collect_preset_banks(
 			_collect_preset_banks(node, preset_banks)
 
 func _enter_tree() -> void:
+	_processor_retention_duration = ProjectSettings.get_setting("xdut/motion/processor/retention_duration", 5.0)
+	
 	_preset_mapper = XDUT_MotionPresetMapper.new()
 	_preset_mapper.add(SpringMotionPreset.new("standard", 170.0, 26.0))
 	_preset_mapper.add(SpringMotionPreset.new("gentle", 120.0, 14.0))

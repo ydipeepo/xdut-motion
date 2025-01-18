@@ -46,7 +46,7 @@ func create_state(trans_init: XDUT_MotionTransitionInit) -> XDUT_MotionState:
 
 func attach(
 	trans_init: XDUT_MotionTransitionInit,
-	completion: XDUT_MotionCompletion) -> void:
+	completion: TaskBase) -> void:
 
 	assert(completion.is_pending)
 
@@ -62,7 +62,7 @@ func attach(
 
 #-------------------------------------------------------------------------------
 
-var _attaching_completion: XDUT_MotionCompletion
+var _attaching_completion: TaskBase
 var _attaching_trans_init: XDUT_MotionTransitionInit
 var _completion_wref: WeakRef
 var _timer: XDUT_MotionTimer
@@ -81,7 +81,7 @@ func _attach_core() -> void:
 	_attaching_completion = null
 
 	if _completion_wref != null:
-		var last_completion := _completion_wref.get_ref() as XDUT_MotionCompletion
+		var last_completion := _completion_wref.get_ref() as TaskBase
 		if last_completion != null:
 			last_completion.release_complete()
 
@@ -127,14 +127,14 @@ func _attach_core() -> void:
 
 func _is_cancel_requested() -> bool:
 	if _completion_wref != null:
-		var completion := _completion_wref.get_ref() as XDUT_MotionCompletion
+		var completion := _completion_wref.get_ref() as TaskBase
 		if completion != null and completion.is_canceled:
 			return true
 	return false
 
 func _release(state: int) -> void:
 	if _completion_wref != null:
-		var completion := _completion_wref.get_ref() as XDUT_MotionCompletion
+		var completion := _completion_wref.get_ref() as TaskBase
 		_completion_wref = null
 		if completion != null:
 			match state:

@@ -60,9 +60,9 @@ func process_physics() -> MotionExpression:
 
 #-------------------------------------------------------------------------------
 
-var _completion: XDUT_MotionCompletion
+var _completion: Awaitable
 
-func _init(completion: XDUT_MotionCompletion) -> void:
+func _init(completion: Awaitable) -> void:
 	assert(completion != null)
 
 	_completion = completion
