@@ -36,7 +36,10 @@ func set_target_position(state: XDUT_MotionState) -> bool:
 	assert(false)
 	return false
 
-func create_state(trans_init: XDUT_MotionTransitionInit) -> XDUT_MotionState:
+func reset_state(
+	trans_init: XDUT_MotionTransitionInit,
+	state: XDUT_MotionState) -> XDUT_MotionState:
+
 	#
 	# 継承先で実装します。
 	#
@@ -91,11 +94,10 @@ func _attach_core() -> void:
 	if completion.is_pending:
 		_completion_wref = weakref(completion)
 
+		_state = reset_state(trans_init, _state)
 		if _state == null:
-			_state = create_state(trans_init)
-			if _state == null:
-				_free(Awaitable.STATE_CANCELED)
-				return
+			_free(Awaitable.STATE_CANCELED)
+			return
 
 		_trans = trans_init.init(_trans)
 		if _trans == null:

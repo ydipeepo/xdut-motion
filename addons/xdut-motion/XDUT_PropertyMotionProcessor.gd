@@ -19,51 +19,110 @@ func set_target_position(state: XDUT_MotionState) -> bool:
 		return true
 	return false
 
-func create_state(trans_init: XDUT_MotionTransitionInit) -> XDUT_MotionState:
+func reset_state(
+	trans_init: XDUT_MotionTransitionInit,
+	state: XDUT_MotionState) -> XDUT_MotionState:
+
 	assert(trans_init != null)
 	
-	var state: XDUT_MotionState
 	var value = _target.get_indexed(_target_key)
 	value = _unwrap(value)
 	match typeof(value):
 		TYPE_INT:
-			state = XDUT_IntMotionState.new()
+			if state == null:
+				state = XDUT_IntMotionState.new()
+			elif state is not XDUT_IntMotionState:
+				state = null
 		TYPE_FLOAT:
-			state = XDUT_FloatMotionState.new()
+			if state == null:
+				state = XDUT_FloatMotionState.new()
+			elif state is not XDUT_FloatMotionState:
+				state = null
 		TYPE_VECTOR2:
-			state = XDUT_Vector2MotionState.new()
+			if state == null:
+				state = XDUT_Vector2MotionState.new()
+			elif state is not XDUT_Vector2MotionState:
+				state = null
 		TYPE_VECTOR2I:
-			state = XDUT_Vector2iMotionState.new()
+			if state == null:
+				state = XDUT_Vector2iMotionState.new()
+			elif state is not XDUT_Vector2iMotionState:
+				state = null
 		TYPE_VECTOR3:
-			state = XDUT_Vector3MotionState.new()
+			if state == null:
+				state = XDUT_Vector3MotionState.new()
+			elif state is not XDUT_Vector3MotionState:
+				state = null
 		TYPE_VECTOR3I:
-			state = XDUT_Vector3iMotionState.new()
+			if state == null:
+				state = XDUT_Vector3iMotionState.new()
+			elif state is not XDUT_Vector3iMotionState:
+				state = null
 		TYPE_TRANSFORM2D:
-			state = XDUT_Transform2DMotionState.new()
+			if state == null:
+				state = XDUT_Transform2DMotionState.new()
+			elif state is not XDUT_Transform2DMotionState:
+				state = null
 		TYPE_BASIS:
-			state = XDUT_BasisMotionState.new()
+			if state == null:
+				state = XDUT_BasisMotionState.new()
+			elif state is not XDUT_BasisMotionState:
+				state = null
 		TYPE_TRANSFORM3D:
-			state = XDUT_Transform3DMotionState.new()
+			if state == null:
+				state = XDUT_Transform3DMotionState.new()
+			elif state is not XDUT_Transform3DMotionState:
+				state = null
 		TYPE_VECTOR4:
-			state = XDUT_Vector4MotionState.new()
+			if state == null:
+				state = XDUT_Vector4MotionState.new()
+			elif state is not XDUT_Vector4MotionState:
+				state = null
 		TYPE_VECTOR4I:
-			state = XDUT_Vector4iMotionState.new()
+			if state == null:
+				state = XDUT_Vector4iMotionState.new()
+			elif state is not XDUT_Vector4iMotionState:
+				state = null
 		TYPE_COLOR:
-			state = XDUT_ColorMotionState.new()
+			if state == null:
+				state = XDUT_ColorMotionState.new()
+			elif state is not XDUT_ColorMotionState:
+				state = null
 		TYPE_PACKED_INT32_ARRAY:
-			state = XDUT_PackedInt32ArrayMotionState.new(value.size())
+			if state == null:
+				state = XDUT_PackedInt32ArrayMotionState.new(value.size())
+			elif state is not XDUT_PackedInt32ArrayMotionState or state.get_element_count() != value.size():
+				state = null
 		TYPE_PACKED_INT64_ARRAY:
-			state = XDUT_PackedInt64ArrayMotionState.new(value.size())
+			if state == null:
+				state = XDUT_PackedInt64ArrayMotionState.new(value.size())
+			elif state is not XDUT_PackedInt64ArrayMotionState or state.get_element_count() != value.size():
+				state = null
 		TYPE_PACKED_FLOAT32_ARRAY:
-			state = XDUT_PackedFloat32ArrayMotionState.new(value.size())
+			if state == null:
+				state = XDUT_PackedFloat32ArrayMotionState.new(value.size())
+			elif state is not XDUT_PackedFloat32ArrayMotionState or state.get_element_count() != value.size():
+				state = null
 		TYPE_PACKED_FLOAT64_ARRAY:
-			state = XDUT_PackedFloat64ArrayMotionState.new(value.size())
+			if state == null:
+				state = XDUT_PackedFloat64ArrayMotionState.new(value.size())
+			elif state is not XDUT_PackedFloat64ArrayMotionState or state.get_element_count() != value.size():
+				state = null
 		TYPE_PACKED_VECTOR2_ARRAY:
-			state = XDUT_PackedVector2ArrayMotionState.new(value.size())
+			if state == null:
+				state = XDUT_PackedVector2ArrayMotionState.new(value.size())
+			elif state is not XDUT_PackedVector2ArrayMotionState or state.get_element_count() != value.size():
+				state = null
 		TYPE_PACKED_VECTOR3_ARRAY:
-			state = XDUT_PackedVector3ArrayMotionState.new(value.size())
+			if state == null:
+				state = XDUT_PackedVector3ArrayMotionState.new(value.size())
+			elif state is not XDUT_PackedVector3ArrayMotionState or state.get_element_count() != value.size():
+				state = null
 		TYPE_PACKED_COLOR_ARRAY:
-			state = XDUT_PackedColorArrayMotionState.new(value.size())
+			if state == null:
+				state = XDUT_PackedColorArrayMotionState.new(value.size())
+			elif state is not XDUT_PackedColorArrayMotionState or state.get_element_count() != value.size():
+				state = null
 	if state != null:
 		state.set_position(value)
 	return state
