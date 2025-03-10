@@ -6,8 +6,8 @@ extends EditorPlugin
 static func _add_setting(
 	key: String,
 	default_value: Variant,
-	property_hint: int,
-	property_hint_string) -> void:
+	property_hint := PROPERTY_HINT_NONE,
+	property_hint_string := "") -> void:
 
 	if not ProjectSettings.has_setting(key):
 		var property_info := {
