@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwbe7v7tlib1v"]
 
-[ext_resource type="Script" path="res://prefab/Graph.gd" id="1_mdm86"]
+[ext_resource type="Script" uid="uid://j1q7el8a2sq2" path="res://prefab/Graph.gd" id="1_mdm86"]
 
 [node name="Graph" type="Panel"]
 clip_contents = true

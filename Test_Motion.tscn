@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://d0gbo2nq5m8ep"]
 
-[ext_resource type="Script" path="res://Test_Motion.gd" id="1_2ix1q"]
+[ext_resource type="Script" uid="uid://l6ftix5fnwue" path="res://Test_Motion.gd" id="1_2ix1q"]
 [ext_resource type="PackedScene" uid="uid://cwbe7v7tlib1v" path="res://prefab/Graph.tscn" id="2_0s3s8"]
-[ext_resource type="Script" path="res://addons/xdut-motion/MotionPresetBank.gd" id="4_77sy7"]
-[ext_resource type="Script" path="res://addons/xdut-motion/MotionPreset.gd" id="5_o5dhi"]
-[ext_resource type="Script" path="res://addons/xdut-motion/SpringMotionPreset.gd" id="6_ppv3q"]
+[ext_resource type="Script" uid="uid://naye2ro68422" path="res://addons/xdut-motion/MotionPresetBank.gd" id="4_77sy7"]
+[ext_resource type="Script" uid="uid://eeqlug2adrmh" path="res://addons/xdut-motion/MotionPreset.gd" id="5_o5dhi"]
+[ext_resource type="Script" uid="uid://ltqw677im1ct" path="res://addons/xdut-motion/SpringMotionPreset.gd" id="6_ppv3q"]
 
 [sub_resource type="Resource" id="Resource_dykqv"]
 script = ExtResource("6_ppv3q")
@@ -144,6 +144,7 @@ theme_override_font_sizes/font_size = 12
 selected = 0
 item_count = 7
 popup/item_0/text = ".preset(\"standard\")"
+popup/item_0/id = 0
 popup/item_1/text = ".preset(\"gentle\")"
 popup/item_1/id = 1
 popup/item_2/text = ".preset(\"wobbly\")"
@@ -176,6 +177,7 @@ theme_override_font_sizes/font_size = 12
 selected = 0
 item_count = 11
 popup/item_0/text = ".linear()"
+popup/item_0/id = 0
 popup/item_1/text = ".quad()"
 popup/item_1/id = 1
 popup/item_2/text = ".cubic()"
@@ -204,6 +206,7 @@ theme_override_font_sizes/font_size = 12
 selected = 0
 item_count = 4
 popup/item_0/text = ".in_()"
+popup/item_0/id = 0
 popup/item_1/text = ".out()"
 popup/item_1/id = 1
 popup/item_2/text = ".in_out()"
@@ -230,6 +233,7 @@ theme_override_font_sizes/font_size = 12
 selected = 0
 item_count = 2
 popup/item_0/text = ".prefer_velocity()"
+popup/item_0/id = 0
 popup/item_1/text = ".prefer_position()"
 popup/item_1/id = 1
 
@@ -346,6 +350,7 @@ theme_override_font_sizes/font_size = 12
 selected = 0
 item_count = 7
 popup/item_0/text = ".preset(\"standard\")"
+popup/item_0/id = 0
 popup/item_1/text = ".preset(\"gentle\")"
 popup/item_1/id = 1
 popup/item_2/text = ".preset(\"wobbly\")"
@@ -389,6 +394,7 @@ theme_override_font_sizes/font_size = 12
 selected = 0
 item_count = 11
 popup/item_0/text = ".linear()"
+popup/item_0/id = 0
 popup/item_1/text = ".quad()"
 popup/item_1/id = 1
 popup/item_2/text = ".cubic()"
@@ -421,6 +427,7 @@ theme_override_font_sizes/font_size = 12
 selected = 0
 item_count = 4
 popup/item_0/text = ".in_()"
+popup/item_0/id = 0
 popup/item_1/text = ".out()"
 popup/item_1/id = 1
 popup/item_2/text = ".in_out()"
@@ -458,6 +465,7 @@ theme_override_font_sizes/font_size = 12
 selected = 0
 item_count = 2
 popup/item_0/text = ".prefer_velocity()"
+popup/item_0/id = 0
 popup/item_1/text = ".prefer_position()"
 popup/item_1/id = 1
 

@@ -24,7 +24,7 @@ This add-on animates nodes with Tween, smooth reschedulable spring and gliding.
 > [!TIP]
 > This add-on is compat with Godot Engine and Redot Engine.
 >
-> * Godot Engine 4.3 ~
+> * Godot Engine 4.4 ~
 > * Redot Engine 4.3 ~
 
 > [!IMPORTANT]

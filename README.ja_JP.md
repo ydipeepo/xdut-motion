@@ -27,8 +27,8 @@
 > [!TIP]
 > このアドオンは Godot Engine 及び Redot Engine に対応しています。
 >
-> * Godot Engine 4.3 ~
-> * Redot Engine 4.3 Beta 2 ~
+> * Godot Engine 4.4 ~
+> * Redot Engine 4.3 ~
 
 > [!IMPORTANT]
 > このアドオンの動作には [XDUT Task](https://github.com/ydipeepo/xdut-task) が必要です。
