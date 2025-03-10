@@ -8,6 +8,8 @@ English | [日本語](README.ja_JP.md)
 
 This add-on animates nodes with Tween, smooth reschedulable spring and gliding.
 
+<br />
+
 ## Quick start
 
 #### Checking the demo
