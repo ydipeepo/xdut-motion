@@ -50,17 +50,19 @@ func attach_method(
 	assert(not target_key.is_empty())
 	assert(trans_init != null)
 
-	var completion := TaskBase.new(cancel, &"MotionExpression")
-	if completion.is_pending:
-		var processor := _get_processor(target, target_key)
-		if processor == null:
-			processor = XDUT_MethodMotionProcessor.new(target, target_key, self)
-			processor.attach(trans_init, completion)
-			add_child(processor)
-		else:
-			processor.attach(trans_init, completion)
-			move_child(processor, get_child_count())
-	return completion
+	if cancel == null or not cancel.is_requested:
+		var completion := TaskBase.new(cancel, &"MotionExpression")
+		if completion.is_pending:
+			var processor := _get_processor(target, target_key)
+			if processor == null:
+				processor = XDUT_MethodMotionProcessor.new(target, target_key, self)
+				processor.attach(trans_init, completion)
+				add_child(processor)
+			else:
+				processor.attach(trans_init, completion)
+				move_child(processor, get_child_count())
+		return completion
+	return Task.canceled()
 
 #-------------------------------------------------------------------------------
 
