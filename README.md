@@ -4,7 +4,7 @@ English | [日本語](README.ja_JP.md)
 
 <br />
 
-# XDUT Motion
+# 🧩 XDUT Motion
 
 This add-on animates nodes with Tween, smooth reschedulable spring and gliding.
 
