@@ -229,5 +229,6 @@ func _init(element_count: int) -> void:
 	_initial_position.resize(_element_count)
 	_final_position.resize(_element_count)
 	_velocity.resize(_element_count)
+	_initial_velocity.resize(_element_count)
 	_rest.resize(_element_count)
 	_rest.fill(true)

@@ -96,29 +96,24 @@ func _attach_core() -> void:
 
 		_state = reset_state(trans_init, _state)
 		if _state == null:
-			_free(Awaitable.STATE_CANCELED)
-			return
+			return _free(Awaitable.STATE_CANCELED)
 
 		_trans = trans_init.init(_trans)
 		if _trans == null:
 			if not set_target_position(_state):
-				_free(Awaitable.STATE_CANCELED)
-				return
+				return _free(Awaitable.STATE_CANCELED)
 			_release(Awaitable.STATE_COMPLETED)
 			set_process(true)
 		else:
 			if not _state.can_set_initial_position(trans_init.initial_position):
 				push_error("'initial_position' type (or size if is it array) does not match the state requirement.")
-				_free(Awaitable.STATE_CANCELED)
-				return
+				return _free(Awaitable.STATE_CANCELED)
 			if not _state.can_set_final_position(trans_init.final_position):
 				push_error("'final_position' type (or size if is it array) does not match the state requirement.")
-				_free(Awaitable.STATE_CANCELED)
-				return
+				return _free(Awaitable.STATE_CANCELED)
 			if not _state.can_set_initial_velocity(trans_init.initial_velocity):
 				push_error("'initial_velocity' type (or size if is it array) does not match the state requirement.")
-				_free(Awaitable.STATE_CANCELED)
-				return
+				return _free(Awaitable.STATE_CANCELED)
 			match _trans.get_process():
 				XDUT_MotionTimer.PROCESS_DEFAULT:
 					set_process(true)
@@ -178,11 +173,9 @@ func _process_core(delta_ticks: int, total_ticks: int) -> void:
 		else:
 			_trans = _trans.next(_state, delta_ticks, total_ticks)
 			if not set_target_position(_state):
-				_free(Awaitable.STATE_CANCELED)
-				return
+				return _free(Awaitable.STATE_CANCELED)
 			if _trans == null:
-				_release(Awaitable.STATE_COMPLETED)
-				return
+				return _release(Awaitable.STATE_COMPLETED)
 			match _trans.get_process():
 				XDUT_MotionTimer.PROCESS_DEFAULT:
 					set_process(true)

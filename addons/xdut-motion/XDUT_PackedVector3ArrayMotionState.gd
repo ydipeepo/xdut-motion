@@ -165,5 +165,6 @@ func _init(element_count: int) -> void:
 	_initial_position.resize(_element_count)
 	_final_position.resize(_element_count)
 	_velocity.resize(_element_count * 3)
+	_initial_velocity.resize(_element_count * 3)
 	_rest.resize(_element_count * 3)
 	_rest.fill(true)
