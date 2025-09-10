@@ -13,7 +13,9 @@ func preset(value: String) -> TweenMotionExpression:
 ## このアニメーションを開始するまでの遅延を設定します。
 func delay(value: float) -> TweenMotionExpression:
 	if value < 0.0:
-		push_warning("'value' must be greater than or equal to zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
+			.format([value]))
 		value = 0.0
 	_trans_init.delay = value
 	return self
@@ -37,7 +39,9 @@ func process_physics() -> TweenMotionExpression:
 ## このアニメーションの期間を設定します。
 func set_duration(value: float) -> TweenMotionExpression:
 	if value < 0.0:
-		push_warning("'value' must be greater than or equal to zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
+			.format([value]))
 		value = 0.0
 	_trans_init.duration = value
 	return self

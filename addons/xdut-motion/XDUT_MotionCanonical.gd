@@ -4,6 +4,9 @@ extends Node
 #	METHODS
 #-------------------------------------------------------------------------------
 
+func translate(translation_key: StringName) -> StringName:
+	return _translation_domain.translate(translation_key)
+
 func get_preset_mapper() -> XDUT_MotionPresetMapper:
 	return _preset_mapper
 
@@ -66,9 +69,45 @@ func attach_method(
 
 #-------------------------------------------------------------------------------
 
+const _TRANSLATION_EN: Dictionary[StringName, String] = {
+	&"ERROR_BAD_OBJECT": "Bad object.",
+	&"ERROR_BAD_PROPERTY_NAME_EMPTY": "Bad property name.",
+	&"ERROR_BAD_METHOD_NAME_EMPTY": "Bad method name.",
+	&"ERROR_BAD_METHOD_NAME": "Bad method name: {0} ({1})",
+	&"ERROR_BAD_PRESET_NAME": "Bad preset name: {0}",
+	&"ERROR_PRESET_PROPERTY_CANNOT_CHANGE_AT_RUNTIME": "Preset property cannot be changed at runtime: {0}",
+	&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO": "Value must be greater than or equal to zero: {0}",
+	&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO": "Value must be greater than zero: {0}",
+	&"ERROR_TYPE_DOES_NOT_MATCH_THE_STATE_REQUIREMENT": "Type (or size if is it array) does not match the state requirement: {0}",
+}
+
+const _TRANSLATION_JA: Dictionary[StringName, String] = {
+	&"ERROR_BAD_OBJECT": "無効なオブジェクト。",
+	&"ERROR_BAD_PROPERTY_NAME": "無効なプロパティ名。",
+	&"ERROR_BAD_METHOD_NAME_EMPTY": "無効なメソッド名。",
+	&"ERROR_BAD_METHOD_NAME": "無効なメソッド名: {0} ({1})",
+	&"ERROR_BAD_PRESET_NAME": "無効なプリセット名: {0}",
+	&"ERROR_PRESET_PROPERTY_CANNOT_CHANGE_AT_RUNTIME": "プリセットプロパティは実行時に変更できません: {0}",
+	&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO": "値はゼロ以上でなければなりません: {0}",
+	&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO": "値はゼロより大きくなければなりません: {0}",
+	&"ERROR_TYPE_DOES_NOT_MATCH_THE_STATE_REQUIREMENT": "型 (配列の場合はサイズ) がステートの要件と一致しません: {0}",
+}
+
+var _translation_domain := TranslationDomain.new()
 var _processor_retention_duration: float
 var _preset_mapper: XDUT_MotionPresetMapper
 var _timer: XDUT_MotionTimer
+
+func _add_translation(
+	locale: StringName,
+	translation_map: Dictionary[StringName, String]) -> void:
+
+	var translation := Translation.new()
+	translation.locale = locale
+	for translation_key: StringName in translation_map:
+		translation.add_message(translation_key, translation_map[translation_key])
+
+	_translation_domain.add_translation(translation)
 
 func _get_processor(target: Node, target_key: String) -> XDUT_MotionProcessor:
 	assert(target != null)

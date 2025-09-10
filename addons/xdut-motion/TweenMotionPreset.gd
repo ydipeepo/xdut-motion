@@ -2,6 +2,18 @@
 class_name TweenMotionPreset extends MotionPreset
 
 #-------------------------------------------------------------------------------
+#	CONSTANTS
+#-------------------------------------------------------------------------------
+
+const DEFAULT_TRANS_TYPE := XDUT_TweenMotionTransition.DEFAULT_TRANS_TYPE
+
+const DEFAULT_EASE_TYPE := XDUT_TweenMotionTransition.DEFAULT_EASE_TYPE
+
+const MIN_DURATION := 0.0
+const MAX_DURATION := 10.0
+const DEFAULT_DURATION := XDUT_TweenMotionTransition.DEFAULT_DURATION
+
+#-------------------------------------------------------------------------------
 #	PROPERTIES
 #-------------------------------------------------------------------------------
 
@@ -17,17 +29,20 @@ class_name TweenMotionPreset extends MotionPreset
 	"Cubic",
 	"Circ",
 	"Bounce",
-	"Back") var trans_type: int = XDUT_TweenMotionTransition.DEFAULT_TRANS_TYPE
+	"Back")
+var trans_type := DEFAULT_TRANS_TYPE
 
 ## アニメーションのイージング関数。
 @export_enum(
 	"In",
 	"Out",
 	"In and Out",
-	"Out and In") var ease_type: int = XDUT_TweenMotionTransition.DEFAULT_EASE_TYPE
+	"Out and In")
+var ease_type := DEFAULT_EASE_TYPE
 
 ## アニメーションの期間。
-@export_range(0.0, 10.0, 0.1, "or_greater") var duration := XDUT_TweenMotionTransition.DEFAULT_DURATION
+@export_range(MIN_DURATION, MAX_DURATION, 0.001, "or_greater")
+var duration := DEFAULT_DURATION
 
 #-------------------------------------------------------------------------------
 #	METHODS
@@ -46,11 +61,11 @@ func apply(trans_init: XDUT_MotionTransitionInit) -> void:
 
 func _init(
 	name := "",
-	trans_type: int = XDUT_TweenMotionTransition.DEFAULT_TRANS_TYPE,
-	ease_type: int = XDUT_TweenMotionTransition.DEFAULT_EASE_TYPE,
-	duration := XDUT_TweenMotionTransition.DEFAULT_DURATION,
-	delay := 0.0,
-	process: int = XDUT_MotionTimer.PROCESS_DEFAULT) -> void:
+	trans_type := DEFAULT_TRANS_TYPE,
+	ease_type := DEFAULT_EASE_TYPE,
+	duration := DEFAULT_DURATION,
+	delay := DEFAULT_DELAY,
+	process := DEFAULT_PROCESS) -> void:
 
 	super(name, delay, process)
 	self.trans_type = trans_type

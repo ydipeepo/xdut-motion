@@ -13,7 +13,9 @@ func preset(value: String) -> SpringMotionExpression:
 ## このアニメーションを開始するまでの遅延を設定します。
 func delay(value: float) -> SpringMotionExpression:
 	if value < 0.0:
-		push_warning("'value' must be greater than or equal to zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
+			.format([value]))
 		value = 0.0
 	_trans_init.delay = value
 	return self
@@ -37,7 +39,9 @@ func process_physics() -> SpringMotionExpression:
 ## このアニメーションの剛性を設定します。
 func set_stiffness(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
-		push_warning("'value' must be greater than zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.stiffness = value
 	return self
@@ -45,7 +49,9 @@ func set_stiffness(value: float) -> SpringMotionExpression:
 ## このアニメーションの減衰を設定します。
 func set_damping(value: float) -> SpringMotionExpression:
 	if value < 0.0:
-		push_warning("'value' must be greater than or equal to zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
+			.format([value]))
 		value = 0.0
 	_trans_init.damping = value
 	return self
@@ -53,7 +59,9 @@ func set_damping(value: float) -> SpringMotionExpression:
 ## このアニメーションの質量を設定します。
 func set_mass(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
-		push_warning("'value' must be greater than zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.mass = value
 	return self
@@ -61,7 +69,9 @@ func set_mass(value: float) -> SpringMotionExpression:
 ## このアニメーションを休止させる位置デルタを設定します。
 func set_rest_speed(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
-		push_warning("'value' must be greater than zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.rest_speed = value
 	return self
@@ -69,7 +79,9 @@ func set_rest_speed(value: float) -> SpringMotionExpression:
 ## このアニメーションを休止させる速度を設定します。
 func set_rest_delta(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
-		push_warning("'value' must be greater than zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.rest_delta = value
 	return self
@@ -110,7 +122,6 @@ func _init(
 	set_preset: Callable) -> void:
 
 	super(completion)
-
 	assert(trans_init != null)
 	_trans_init = trans_init
 	_set_preset = set_preset

@@ -9,11 +9,6 @@
 [sub_resource type="Resource" id="Resource_dykqv"]
 script = ExtResource("6_ppv3q")
 stiffness = 5.00001
-damping = 10.0
-mass = 1.0
-rest_delta = 0.01
-rest_speed = 0.01
-limit_overdamping = true
 limit_overshooting = true
 name = "custom"
 delay = 0.3

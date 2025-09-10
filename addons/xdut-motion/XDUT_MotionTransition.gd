@@ -1,3 +1,4 @@
+@abstract
 class_name XDUT_MotionTransition
 
 #-------------------------------------------------------------------------------
@@ -10,22 +11,11 @@ const EPSILON := 0.00001
 #	METHODS
 #-------------------------------------------------------------------------------
 
-func get_process() -> int:
-	#
-	# 継承先で実装する必要があります。
-	#
+@abstract
+func get_process() -> int
 
-	assert(false)
-	return -1
-
+@abstract
 func next(
 	state: XDUT_MotionState,
 	delta_ticks: int,
-	total_ticks: int) -> XDUT_MotionTransition:
-
-	#
-	# 継承先で実装する必要があります。
-	#
-
-	assert(false)
-	return null
+	total_ticks: int) -> XDUT_MotionTransition

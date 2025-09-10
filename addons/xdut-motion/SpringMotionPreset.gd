@@ -2,29 +2,64 @@
 class_name SpringMotionPreset extends MotionPreset
 
 #-------------------------------------------------------------------------------
+#	CONSTANTS
+#-------------------------------------------------------------------------------
+
+const MIN_STIFFNESS := XDUT_MotionTransition.EPSILON
+const MAX_STIFFNESS := 1000.0
+const DEFAULT_STIFFNESS := XDUT_SpringMotionTransition.DEFAULT_STIFFNESS
+
+const MIN_DAMPING := 0.0
+const MAX_DAMPING := 1000.0
+const DEFAULT_DAMPING := XDUT_SpringMotionTransition.DEFAULT_DAMPING
+
+const MIN_MASS := XDUT_MotionTransition.EPSILON
+const MAX_MASS := 1000.0
+const DEFAULT_MASS := XDUT_SpringMotionTransition.DEFAULT_MASS
+
+const MIN_REST_DELTA := XDUT_MotionTransition.EPSILON
+const MAX_REST_DELTA := 10.0
+const DEFAULT_REST_DELTA := XDUT_SpringMotionTransition.DEFAULT_REST_DELTA
+
+const MIN_REST_SPEED := XDUT_MotionTransition.EPSILON
+const MAX_REST_SPEED := 10.0
+const DEFAULT_REST_SPEED := XDUT_SpringMotionTransition.DEFAULT_REST_SPEED
+
+const DEFAULT_LIMIT_OVERDAMPING := XDUT_SpringMotionTransition.DEFAULT_LIMIT_OVERDAMPING
+
+const DEFAULT_LIMIT_OVERSHOOTING := XDUT_SpringMotionTransition.DEFAULT_LIMIT_OVERSHOOTING
+
+#-------------------------------------------------------------------------------
 #	PROPERTIES
 #-------------------------------------------------------------------------------
 
 ## アニメーションの剛性。
-@export_range(XDUT_MotionTransition.EPSILON, 1000.0, 1.0, "or_greater") var stiffness := XDUT_SpringMotionTransition.DEFAULT_STIFFNESS
+@export_range(MIN_STIFFNESS, MAX_STIFFNESS, 1.0, "or_greater")
+var stiffness := DEFAULT_STIFFNESS
 
 ## アニメーションの減衰。
-@export_range(0.0, 1000.0, 1.0, "or_greater") var damping := XDUT_SpringMotionTransition.DEFAULT_DAMPING
+@export_range(MIN_DAMPING, MAX_DAMPING, 1.0, "or_greater")
+var damping := DEFAULT_DAMPING
 
 ## アニメーションの質量。
-@export_range(XDUT_MotionTransition.EPSILON, 1000.0, 1.0, "or_greater") var mass := XDUT_SpringMotionTransition.DEFAULT_MASS
+@export_range(MIN_MASS, MAX_MASS, 1.0, "or_greater")
+var mass := DEFAULT_MASS
 
 ## アニメーションを休止させる位置デルタ。
-@export_range(XDUT_MotionTransition.EPSILON, 10.0, 0.1, "or_greater") var rest_delta := XDUT_SpringMotionTransition.DEFAULT_REST_DELTA
+@export_range(MIN_REST_DELTA, MAX_REST_DELTA, 0.001, "or_greater")
+var rest_delta := DEFAULT_REST_DELTA
 
 ## アニメーションを休止させる速度。
-@export_range(XDUT_MotionTransition.EPSILON, 10.0, 0.1, "or_greater", "units/s") var rest_speed := XDUT_SpringMotionTransition.DEFAULT_REST_SPEED
+@export_range(MIN_REST_SPEED, MAX_REST_SPEED, 0.001, "or_greater", "units/s")
+var rest_speed := DEFAULT_REST_SPEED
 
 ## アニメーションが過減衰とならないよう制限するかどうか。
-@export var limit_overdamping := XDUT_SpringMotionTransition.DEFAULT_LIMIT_OVERDAMPING
+@export
+var limit_overdamping := DEFAULT_LIMIT_OVERDAMPING
 
 ## アニメーションがオーバーシュートしないよう制限するかどうか。
-@export var limit_overshooting := XDUT_SpringMotionTransition.DEFAULT_LIMIT_OVERSHOOTING
+@export
+var limit_overshooting := DEFAULT_LIMIT_OVERSHOOTING
 
 #-------------------------------------------------------------------------------
 #	METHODS
@@ -47,15 +82,15 @@ func apply(trans_init: XDUT_MotionTransitionInit) -> void:
 
 func _init(
 	name := "",
-	stiffness := XDUT_SpringMotionTransition.DEFAULT_STIFFNESS,
-	damping := XDUT_SpringMotionTransition.DEFAULT_DAMPING,
-	mass := XDUT_SpringMotionTransition.DEFAULT_MASS,
-	rest_delta := XDUT_SpringMotionTransition.DEFAULT_REST_DELTA,
-	rest_speed := XDUT_SpringMotionTransition.DEFAULT_REST_SPEED,
-	limit_overdamping := XDUT_SpringMotionTransition.DEFAULT_LIMIT_OVERDAMPING,
-	limit_overshooting := XDUT_SpringMotionTransition.DEFAULT_LIMIT_OVERSHOOTING,
-	delay := 0.0,
-	process: int = XDUT_MotionTimer.PROCESS_DEFAULT) -> void:
+	stiffness := DEFAULT_STIFFNESS,
+	damping := DEFAULT_DAMPING,
+	mass := DEFAULT_MASS,
+	rest_delta := DEFAULT_REST_DELTA,
+	rest_speed := DEFAULT_REST_SPEED,
+	limit_overdamping := DEFAULT_LIMIT_OVERDAMPING,
+	limit_overshooting := DEFAULT_LIMIT_OVERSHOOTING,
+	delay := DEFAULT_DELAY,
+	process := DEFAULT_PROCESS) -> void:
 
 	super(name, delay, process)
 	self.stiffness = stiffness

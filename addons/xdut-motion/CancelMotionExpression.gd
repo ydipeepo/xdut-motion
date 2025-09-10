@@ -13,7 +13,9 @@ func preset(value: String) -> CancelMotionExpression:
 ## このキャンセルを開始するまでの遅延を設定します。
 func delay(value: float) -> CancelMotionExpression:
 	if value < 0.0:
-		push_warning("'value' must be greater than or equal to zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
+			.format([value]))
 		value = 0.0
 	_trans_init.delay = value
 	return self
@@ -28,11 +30,11 @@ func set_process(value: int) -> CancelMotionExpression:
 
 ## このキャンセルをアイドルフレームで処理するよう設定します。
 func process_default() -> CancelMotionExpression:
-	return super.process_default()
+	return super()
 
 ## このキャンセルを物理フレームで処理するよう設定します。
 func process_physics() -> CancelMotionExpression:
-	return super.process_physics()
+	return super()
 
 ## 最終位置を設定します。
 func at(value: Variant) -> CancelMotionExpression:
@@ -50,7 +52,6 @@ func _init(
 	set_preset: Callable) -> void:
 
 	super(completion)
-
 	assert(trans_init != null)
 	_trans_init = trans_init
 	_set_preset = set_preset

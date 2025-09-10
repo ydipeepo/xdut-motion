@@ -1,51 +1,35 @@
+@abstract
 class_name XDUT_MotionProcessor extends Node
 
 #-------------------------------------------------------------------------------
 #	METHODS
 #-------------------------------------------------------------------------------
 
-func get_target_instance_id() -> int:
-	#
-	# 継承先で実装する必要があります。
-	#
-	
-	assert(false)
-	return 0
+static func internal_motion_get_canonical() -> Node:
+	if not is_instance_valid(_motion_canonical):
+		_motion_canonical = Engine \
+			.get_main_loop() \
+			.root \
+			.get_node("/root/XDUT_MotionCanonical")
+	assert(is_instance_valid(_motion_canonical), "XDUT Motion is not activated.")
+	return _motion_canonical
 
-func get_target_name() -> String:
-	#
-	# 継承先で実装する必要があります。
-	#
+@abstract
+func get_target_instance_id() -> int
 
-	assert(false)
-	return ""
+@abstract
+func get_target_name() -> String
 
-func get_target_key() -> String:
-	#
-	# 継承先で実装する必要があります。
-	#
-	
-	assert(false)
-	return ""
+@abstract
+func get_target_key() -> String
 
-func set_target_position(state: XDUT_MotionState) -> bool:
-	#
-	# 継承先で実装します。
-	#
+@abstract
+func set_target_position(state: XDUT_MotionState) -> bool
 
-	assert(false)
-	return false
-
+@abstract
 func reset_state(
 	trans_init: XDUT_MotionTransitionInit,
-	state: XDUT_MotionState) -> XDUT_MotionState:
-
-	#
-	# 継承先で実装します。
-	#
-
-	assert(false)
-	return null
+	state: XDUT_MotionState) -> XDUT_MotionState
 
 func attach(
 	trans_init: XDUT_MotionTransitionInit,
@@ -64,6 +48,8 @@ func attach(
 	_attach_core.call_deferred()
 
 #-------------------------------------------------------------------------------
+
+static var _motion_canonical: Node
 
 var _attaching_completion: TaskBase
 var _attaching_trans_init: XDUT_MotionTransitionInit
@@ -106,13 +92,19 @@ func _attach_core() -> void:
 			set_process(true)
 		else:
 			if not _state.can_set_initial_position(trans_init.initial_position):
-				push_error("'initial_position' type (or size if is it array) does not match the state requirement.")
+				push_error(internal_motion_get_canonical()
+					.translate(&"ERROR_TYPE_DOES_NOT_MATCH_THE_STATE_REQUIREMENT")
+					.format([&"initial_position"]))
 				return _free(Awaitable.STATE_CANCELED)
 			if not _state.can_set_final_position(trans_init.final_position):
-				push_error("'final_position' type (or size if is it array) does not match the state requirement.")
+				push_error(internal_motion_get_canonical()
+					.translate(&"ERROR_TYPE_DOES_NOT_MATCH_THE_STATE_REQUIREMENT")
+					.format([&"final_position"]))
 				return _free(Awaitable.STATE_CANCELED)
 			if not _state.can_set_initial_velocity(trans_init.initial_velocity):
-				push_error("'initial_velocity' type (or size if is it array) does not match the state requirement.")
+				push_error(internal_motion_get_canonical()
+					.translate(&"ERROR_TYPE_DOES_NOT_MATCH_THE_STATE_REQUIREMENT")
+					.format([&"initial_velocity"]))
 				return _free(Awaitable.STATE_CANCELED)
 			match _trans.get_process():
 				XDUT_MotionTimer.PROCESS_DEFAULT:

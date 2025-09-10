@@ -13,7 +13,9 @@ func preset(value: String) -> GlideMotionExpression:
 ## このアニメーションを開始するまでの遅延を設定します。
 func delay(value: float) -> GlideMotionExpression:
 	if value < 0.0:
-		push_warning("'value' must be greater than or equal to zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
+			.format([value]))
 		value = 0.0
 	_trans_init.delay = value
 	return self
@@ -37,7 +39,9 @@ func process_physics() -> GlideMotionExpression:
 ## このアニメーションの崩壊定数を設定します。
 func set_power(value: float) -> GlideMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
-		push_warning("'value' must be greater than zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.power = value
 	return self
@@ -45,7 +49,9 @@ func set_power(value: float) -> GlideMotionExpression:
 ## このアニメーションの時定数を設定します。
 func set_time_constant(value: float) -> GlideMotionExpression:
 	if value < 0.0:
-		push_warning("'value' must be greater than or equal to zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
+			.format([value]))
 		value = 0.0
 	_trans_init.time_constant = value
 	return self
@@ -53,7 +59,9 @@ func set_time_constant(value: float) -> GlideMotionExpression:
 ## このアニメーションを休止させる位置デルタを設定します。
 func set_rest_delta(value: float) -> GlideMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
-		push_warning("'value' must be greater than zero: ", value)
+		push_warning(internal_motion_get_canonical()
+			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.rest_delta = value
 	return self
@@ -106,7 +114,6 @@ func _init(
 	set_preset: Callable) -> void:
 
 	super(completion)
-
 	assert(trans_init != null)
 	_trans_init = trans_init
 	_set_preset = set_preset
