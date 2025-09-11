@@ -36,20 +36,12 @@ func set_initial_position(value: Variant) -> void:
 		TYPE_NIL:
 			for index: int in _element_count:
 				_initial_position[index] = _position[index]
-		TYPE_PACKED_FLOAT32_ARRAY:
-			if value.size() == _element_count:
-				for index: int in _element_count:
-					_initial_position[index] = value[index]
-		TYPE_PACKED_FLOAT64_ARRAY:
-			if value.size() == _element_count:
-				for index: int in _element_count:
-					_initial_position[index] = value[index]
-		TYPE_PACKED_INT32_ARRAY:
-			if value.size() == _element_count:
-				for index: int in _element_count:
-					_initial_position[index] = value[index]
+		TYPE_ARRAY, \
+		TYPE_PACKED_FLOAT32_ARRAY, \
+		TYPE_PACKED_FLOAT64_ARRAY, \
+		TYPE_PACKED_INT32_ARRAY, \
 		TYPE_PACKED_INT64_ARRAY:
-			if value.size() == _element_count:
+			if can_set_initial_position(value):
 				for index: int in _element_count:
 					_initial_position[index] = value[index]
 		TYPE_CALLABLE:
@@ -71,20 +63,12 @@ func set_final_position(value: Variant) -> void:
 		TYPE_NIL:
 			for index: int in _element_count:
 				_final_position[index] = _position[index]
-		TYPE_PACKED_FLOAT32_ARRAY:
-			if value.size() == _element_count:
-				for index: int in _element_count:
-					_final_position[index] = value[index]
-		TYPE_PACKED_FLOAT64_ARRAY:
-			if value.size() == _element_count:
-				for index: int in _element_count:
-					_final_position[index] = value[index]
-		TYPE_PACKED_INT32_ARRAY:
-			if value.size() == _element_count:
-				for index: int in _element_count:
-					_final_position[index] = value[index]
+		TYPE_ARRAY, \
+		TYPE_PACKED_FLOAT32_ARRAY, \
+		TYPE_PACKED_FLOAT64_ARRAY, \
+		TYPE_PACKED_INT32_ARRAY, \
 		TYPE_PACKED_INT64_ARRAY:
-			if value.size() == _element_count:
+			if can_set_final_position(value):
 				for index: int in _element_count:
 					_final_position[index] = value[index]
 		TYPE_CALLABLE:
@@ -114,22 +98,13 @@ func set_initial_velocity(value: Variant) -> void:
 		TYPE_NIL:
 			for index: int in _element_count:
 				_initial_velocity[index] = 0.0 if _rest[index] else _velocity[index]
-		TYPE_PACKED_FLOAT32_ARRAY:
-			if value.size() == _element_count:
-				for index: int in _element_count:
-					_initial_velocity[index] = value[index]
-		TYPE_PACKED_FLOAT64_ARRAY:
-			if value.size() == _element_count:
-				for index: int in _element_count:
-					_initial_velocity[index] = value[index]
-		TYPE_PACKED_INT32_ARRAY:
-			if value.size() == _element_count:
-				for index: int in _element_count:
-					_initial_velocity[index] = value[index]
+		TYPE_ARRAY, \
+		TYPE_PACKED_FLOAT32_ARRAY, \
+		TYPE_PACKED_FLOAT64_ARRAY, \
+		TYPE_PACKED_INT32_ARRAY, \
 		TYPE_PACKED_INT64_ARRAY:
-			if value.size() == _element_count:
-				for index: int in _element_count:
-					_initial_velocity[index] = value[index]
+			if can_set_initial_velocity(value):
+				_initial_velocity.assign(value)
 		TYPE_CALLABLE:
 			set_initial_velocity(value.call())
 
@@ -153,15 +128,22 @@ func can_set_initial_position(value: Variant) -> bool:
 	match typeof(value):
 		TYPE_NIL:
 			return true
-		TYPE_PACKED_FLOAT32_ARRAY:
+		TYPE_ARRAY:
 			if value.size() == _element_count:
-				return true
-		TYPE_PACKED_FLOAT64_ARRAY:
-			if value.size() == _element_count:
-				return true
-		TYPE_PACKED_INT32_ARRAY:
-			if value.size() == _element_count:
-				return true
+				var valid := true
+				for index: int in _element_count:
+					match typeof(value[index]):
+						TYPE_INT, \
+						TYPE_FLOAT:
+							pass
+						_:
+							valid = false
+							break
+				if valid:
+					return true
+		TYPE_PACKED_FLOAT32_ARRAY, \
+		TYPE_PACKED_FLOAT64_ARRAY, \
+		TYPE_PACKED_INT32_ARRAY, \
 		TYPE_PACKED_INT64_ARRAY:
 			if value.size() == _element_count:
 				return true
@@ -174,15 +156,22 @@ func can_set_final_position(value: Variant) -> bool:
 	match typeof(value):
 		TYPE_NIL:
 			return true
-		TYPE_PACKED_FLOAT32_ARRAY:
+		TYPE_ARRAY:
 			if value.size() == _element_count:
-				return true
-		TYPE_PACKED_FLOAT64_ARRAY:
-			if value.size() == _element_count:
-				return true
-		TYPE_PACKED_INT32_ARRAY:
-			if value.size() == _element_count:
-				return true
+				var valid := true
+				for index: int in _element_count:
+					match typeof(value[index]):
+						TYPE_INT, \
+						TYPE_FLOAT:
+							pass
+						_:
+							valid = false
+							break
+				if valid:
+					return true
+		TYPE_PACKED_FLOAT32_ARRAY, \
+		TYPE_PACKED_FLOAT64_ARRAY, \
+		TYPE_PACKED_INT32_ARRAY, \
 		TYPE_PACKED_INT64_ARRAY:
 			if value.size() == _element_count:
 				return true
@@ -195,15 +184,22 @@ func can_set_initial_velocity(value: Variant) -> bool:
 	match typeof(value):
 		TYPE_NIL:
 			return true
-		TYPE_PACKED_FLOAT32_ARRAY:
+		TYPE_ARRAY:
 			if value.size() == _element_count:
-				return true
-		TYPE_PACKED_FLOAT64_ARRAY:
-			if value.size() == _element_count:
-				return true
-		TYPE_PACKED_INT32_ARRAY:
-			if value.size() == _element_count:
-				return true
+				var valid := true
+				for index: int in _element_count:
+					match typeof(value[index]):
+						TYPE_INT, \
+						TYPE_FLOAT:
+							pass
+						_:
+							valid = false
+							break
+				if valid:
+					return true
+		TYPE_PACKED_FLOAT32_ARRAY, \
+		TYPE_PACKED_FLOAT64_ARRAY, \
+		TYPE_PACKED_INT32_ARRAY, \
 		TYPE_PACKED_INT64_ARRAY:
 			if value.size() == _element_count:
 				return true

@@ -134,6 +134,9 @@ func _collect_preset_banks(
 			_collect_preset_banks(node, preset_banks)
 
 func _enter_tree() -> void:
+	_add_translation(&"en", _TRANSLATION_EN)
+	_add_translation(&"ja", _TRANSLATION_JA)
+
 	_processor_retention_duration = ProjectSettings.get_setting("xdut/motion/processor/retention_duration", 5.0)
 	
 	_preset_mapper = XDUT_MotionPresetMapper.new()

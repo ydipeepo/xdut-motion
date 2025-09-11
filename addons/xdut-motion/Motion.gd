@@ -5,7 +5,7 @@ class_name Motion
 #	METHODS
 #-------------------------------------------------------------------------------
 
-static func get_canonical() -> Node:
+static func internal_get_motion_canonical() -> Node:
 	if not is_instance_valid(_motion_canonical):
 		_motion_canonical = Engine \
 			.get_main_loop() \
@@ -21,17 +21,17 @@ static func spring(
 	cancel: Cancel = null) -> SpringMotionExpression:
 
 	if not is_instance_valid(object):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_OBJECT"))
 		return null
 	if property_name.is_empty():
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_PROPERTY_NAME_EMPTY"))
 		return null
 
 	var trans_init := XDUT_SpringMotionTransitionInit.new()
 	return SpringMotionExpression.new(
-		get_canonical()
+		internal_get_motion_canonical()
 			.attach(
 				object,
 				property_name,
@@ -47,22 +47,22 @@ static func spring_method(
 	cancel: Cancel = null) -> SpringMotionExpression:
 
 	if not is_instance_valid(object):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_OBJECT"))
 		return null
 	if method_name.is_empty():
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME_EMPTY"))
 		return null
 	if not object.has_method(method_name):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME")
 			.format([method_name, object.name]))
 		return null
 
 	var trans_init := XDUT_SpringMotionTransitionInit.new()
 	return SpringMotionExpression.new(
-		get_canonical()
+		internal_get_motion_canonical()
 			.attach_method(
 				object,
 				method_name,
@@ -78,17 +78,17 @@ static func glide(
 	cancel: Cancel = null) -> GlideMotionExpression:
 
 	if not is_instance_valid(object):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_OBJECT"))
 		return null
 	if property_name.is_empty():
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_PROPERTY_NAME_EMPTY"))
 		return null
 
 	var trans_init := XDUT_GlideMotionTransitionInit.new()
 	return GlideMotionExpression.new(
-		get_canonical()
+		internal_get_motion_canonical()
 			.attach(
 				object,
 				property_name,
@@ -104,22 +104,22 @@ static func glide_method(
 	cancel: Cancel = null) -> GlideMotionExpression:
 
 	if not is_instance_valid(object):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_OBJECT"))
 		return null
 	if method_name.is_empty():
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME_EMPTY"))
 		return null
 	if not object.has_method(method_name):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME")
 			.format([method_name, object.name]))
 		return null
 
 	var trans_init := XDUT_GlideMotionTransitionInit.new()
 	return GlideMotionExpression.new(
-		get_canonical()
+		internal_get_motion_canonical()
 			.attach_method(
 				object,
 				method_name,
@@ -135,17 +135,17 @@ static func tween(
 	cancel: Cancel = null) -> TweenMotionExpression:
 
 	if not is_instance_valid(object):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_OBJECT"))
 		return null
 	if property_name.is_empty():
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_PROPERTY_NAME_EMPTY"))
 		return null
 
 	var trans_init := XDUT_TweenMotionTransitionInit.new()
 	return TweenMotionExpression.new(
-		get_canonical()
+		internal_get_motion_canonical()
 			.attach(
 				object,
 				property_name,
@@ -161,22 +161,22 @@ static func tween_method(
 	cancel: Cancel = null) -> TweenMotionExpression:
 
 	if not is_instance_valid(object):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_OBJECT"))
 		return null
 	if method_name.is_empty():
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME_EMPTY"))
 		return null
 	if not object.has_method(method_name):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME")
 			.format([method_name, object.name]))
 		return null
 
 	var trans_init := XDUT_TweenMotionTransitionInit.new()
 	return TweenMotionExpression.new(
-		get_canonical()
+		internal_get_motion_canonical()
 			.attach_method(
 				object,
 				method_name,
@@ -192,17 +192,17 @@ static func cancel(
 	cancel: Cancel = null) -> CancelMotionExpression:
 
 	if not is_instance_valid(object):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_OBJECT"))
 		return null
 	if property_name.is_empty():
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_PROPERTY_NAME_EMPTY"))
 		return null
 
 	var trans_init := XDUT_CancelMotionTransitionInit.new()
 	return CancelMotionExpression.new(
-		get_canonical()
+		internal_get_motion_canonical()
 			.attach(
 				object,
 				property_name,
@@ -218,22 +218,22 @@ static func cancel_method(
 	cancel: Cancel = null) -> CancelMotionExpression:
 
 	if not is_instance_valid(object):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_OBJECT"))
 		return null
 	if method_name.is_empty():
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME_EMPTY"))
 		return null
 	if not object.has_method(method_name):
-		push_error(get_canonical()
+		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME")
 			.format([method_name, object.name]))
 		return null
 
 	var trans_init := XDUT_CancelMotionTransitionInit.new()
 	return CancelMotionExpression.new(
-		get_canonical()
+		internal_get_motion_canonical()
 			.attach_method(
 				object,
 				method_name,
@@ -247,10 +247,10 @@ static func cancel_method(
 static var _motion_canonical: Node
 
 static func _set_preset(preset_name: String, trans_init: XDUT_MotionTransitionInit) -> void:
-	var preset_mapper: XDUT_MotionPresetMapper = get_canonical() \
+	var preset_mapper: XDUT_MotionPresetMapper = internal_get_motion_canonical() \
 		.get_preset_mapper()
 	if not preset_mapper.apply(preset_name, trans_init):
-		push_warning(get_canonical()
+		push_warning(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_PRESET_NAME")
 			.format(preset_name))
 		return

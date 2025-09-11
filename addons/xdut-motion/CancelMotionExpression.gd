@@ -13,7 +13,7 @@ func preset(value: String) -> CancelMotionExpression:
 ## このキャンセルを開始するまでの遅延を設定します。
 func delay(value: float) -> CancelMotionExpression:
 	if value < 0.0:
-		push_warning(internal_motion_get_canonical()
+		push_warning(internal_get_motion_canonical()
 			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
 			.format([value]))
 		value = 0.0

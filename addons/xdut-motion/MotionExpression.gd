@@ -7,7 +7,7 @@ class_name MotionExpression extends Awaitable
 #	METHODS
 #-------------------------------------------------------------------------------
 
-static func internal_motion_get_canonical() -> Node:
+static func internal_get_motion_canonical() -> Node:
 	if not is_instance_valid(_motion_canonical):
 		_motion_canonical = Engine \
 			.get_main_loop() \

@@ -23,7 +23,7 @@ var name: String:
 		return _name
 	set(value):
 		if _name_frozen:
-			printerr(internal_motion_get_canonical()
+			printerr(internal_get_motion_canonical()
 				.translate(&"ERROR_PRESET_PROPERTY_CANNOT_CHANGE_AT_RUNTIME")
 				.format(&"name"))
 			return
@@ -41,7 +41,7 @@ var process := DEFAULT_PROCESS
 #	METHODS
 #-------------------------------------------------------------------------------
 
-static func internal_motion_get_canonical() -> Node:
+static func internal_get_motion_canonical() -> Node:
 	if not is_instance_valid(_motion_canonical):
 		_motion_canonical = Engine \
 			.get_main_loop() \
