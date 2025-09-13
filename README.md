@@ -21,14 +21,14 @@ await Motion \
 
 ## Quick start
 
+> [!IMPORTANT]
+> This addon requires [XDUT Task](https://github.com/ydipeepo/xdut-task) (1.5.0~) installed.
+
 #### Installation
 
 1. `git clone https://github.com/ydipeepo/xdut-motion.git` or [download release](https://github.com/ydipeepo/xdut-motion/release).
 2. Then copy `addons/xdut-motion` directory into your project.
 3. And enable XDUT Motion from your project settings.
-
-> [!IMPORTANT]
-> This addon requires [XDUT Task](https://github.com/ydipeepo/xdut-task) (1.5.0~) installed.
 
 #### Reference
 
