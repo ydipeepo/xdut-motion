@@ -32,7 +32,7 @@ await Motion \
 
 #### Reference
 
-📖 [Wiki](https://github.com/ydipeepo/xdut-motion/wiki) (Google Translated)
+📖 [Wiki](https://translate.kagi.com/github.com/ydipeepo/xdut-motion/wiki) (Kagi Translated)
 
 <br />
 
