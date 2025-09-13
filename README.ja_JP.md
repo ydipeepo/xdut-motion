@@ -10,6 +10,13 @@
 
 継続可能なバネや滑走アニメーション、加速度の情報を持った Tween を含む、ノードをアニメーションさせるためのアドオンです。
 
+```gdscript
+await Motion \
+	.spring($Button, "position") \
+	.to(Vector2(128.0, 128.0)) \
+	.wait()
+```
+
 <br />
 
 ## 使い方
