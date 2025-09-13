@@ -93,17 +93,17 @@ func _attach_core() -> void:
 		else:
 			if not _state.can_set_initial_position(trans_init.initial_position):
 				push_error(internal_motion_get_canonical()
-					.translate(&"ERROR_TYPE_DOES_NOT_MATCH_THE_STATE_REQUIREMENT")
+					.translate(&"ERROR_DOES_NOT_MATCH_THE_STATE_REQUIREMENT")
 					.format([&"initial_position"]))
 				return _free(Awaitable.STATE_CANCELED)
 			if not _state.can_set_final_position(trans_init.final_position):
 				push_error(internal_motion_get_canonical()
-					.translate(&"ERROR_TYPE_DOES_NOT_MATCH_THE_STATE_REQUIREMENT")
+					.translate(&"ERROR_DOES_NOT_MATCH_THE_STATE_REQUIREMENT")
 					.format([&"final_position"]))
 				return _free(Awaitable.STATE_CANCELED)
 			if not _state.can_set_initial_velocity(trans_init.initial_velocity):
 				push_error(internal_motion_get_canonical()
-					.translate(&"ERROR_TYPE_DOES_NOT_MATCH_THE_STATE_REQUIREMENT")
+					.translate(&"ERROR_DOES_NOT_MATCH_THE_STATE_REQUIREMENT")
 					.format([&"initial_velocity"]))
 				return _free(Awaitable.STATE_CANCELED)
 			match _trans.get_process():

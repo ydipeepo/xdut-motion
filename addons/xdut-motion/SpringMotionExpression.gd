@@ -14,7 +14,7 @@ func preset(value: String) -> SpringMotionExpression:
 func delay(value: float) -> SpringMotionExpression:
 	if value < 0.0:
 		push_warning(internal_get_motion_canonical()
-			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
+			.translate(&"ERROR_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
 			.format([value]))
 		value = 0.0
 	_trans_init.delay = value
@@ -40,7 +40,7 @@ func process_physics() -> SpringMotionExpression:
 func set_stiffness(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning(internal_get_motion_canonical()
-			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.translate(&"ERROR_MUST_BE_GREATER_THAN_ZERO")
 			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.stiffness = value
@@ -50,7 +50,7 @@ func set_stiffness(value: float) -> SpringMotionExpression:
 func set_damping(value: float) -> SpringMotionExpression:
 	if value < 0.0:
 		push_warning(internal_get_motion_canonical()
-			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
+			.translate(&"ERROR_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
 			.format([value]))
 		value = 0.0
 	_trans_init.damping = value
@@ -60,7 +60,7 @@ func set_damping(value: float) -> SpringMotionExpression:
 func set_mass(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning(internal_get_motion_canonical()
-			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.translate(&"ERROR_MUST_BE_GREATER_THAN_ZERO")
 			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.mass = value
@@ -70,7 +70,7 @@ func set_mass(value: float) -> SpringMotionExpression:
 func set_rest_speed(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning(internal_get_motion_canonical()
-			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.translate(&"ERROR_MUST_BE_GREATER_THAN_ZERO")
 			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.rest_speed = value
@@ -80,7 +80,7 @@ func set_rest_speed(value: float) -> SpringMotionExpression:
 func set_rest_delta(value: float) -> SpringMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning(internal_get_motion_canonical()
-			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.translate(&"ERROR_MUST_BE_GREATER_THAN_ZERO")
 			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.rest_delta = value

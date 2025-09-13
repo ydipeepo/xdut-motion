@@ -24,7 +24,7 @@ var name: String:
 	set(value):
 		if _name_frozen:
 			printerr(internal_get_motion_canonical()
-				.translate(&"ERROR_PRESET_PROPERTY_CANNOT_CHANGE_AT_RUNTIME")
+				.translate(&"ERROR_CANNOT_CHANGE_PRESET_NAME_AT_RUNTIME")
 				.format(&"name"))
 			return
 		_name = value

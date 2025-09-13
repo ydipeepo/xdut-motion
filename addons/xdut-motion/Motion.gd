@@ -26,8 +26,12 @@ static func spring(
 		return null
 	if property_name.is_empty():
 		push_error(internal_get_motion_canonical()
-			.translate(&"ERROR_BAD_PROPERTY_NAME_EMPTY"))
+			.translate(&"ERROR_EMPTY_PROPERTY_NAME"))
 		return null
+	#if not property_name in object:
+	#	push_error(internal_get_motion_canonical()
+	#		.translate(&"ERROR_BAD_PROPERTY_NAME"))
+	#	return null
 
 	var trans_init := XDUT_SpringMotionTransitionInit.new()
 	return SpringMotionExpression.new(
@@ -52,12 +56,12 @@ static func spring_method(
 		return null
 	if method_name.is_empty():
 		push_error(internal_get_motion_canonical()
-			.translate(&"ERROR_BAD_METHOD_NAME_EMPTY"))
+			.translate(&"ERROR_EMPTY_METHOD_NAME"))
 		return null
 	if not object.has_method(method_name):
 		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME")
-			.format([method_name, object.name]))
+			.format([method_name]))
 		return null
 
 	var trans_init := XDUT_SpringMotionTransitionInit.new()
@@ -83,8 +87,12 @@ static func glide(
 		return null
 	if property_name.is_empty():
 		push_error(internal_get_motion_canonical()
-			.translate(&"ERROR_BAD_PROPERTY_NAME_EMPTY"))
+			.translate(&"ERROR_EMPTY_PROPERTY_NAME"))
 		return null
+	#if not property_name in object:
+	#	push_error(internal_get_motion_canonical()
+	#		.translate(&"ERROR_BAD_PROPERTY_NAME"))
+	#	return null
 
 	var trans_init := XDUT_GlideMotionTransitionInit.new()
 	return GlideMotionExpression.new(
@@ -109,12 +117,12 @@ static func glide_method(
 		return null
 	if method_name.is_empty():
 		push_error(internal_get_motion_canonical()
-			.translate(&"ERROR_BAD_METHOD_NAME_EMPTY"))
+			.translate(&"ERROR_EMPTY_METHOD_NAME"))
 		return null
 	if not object.has_method(method_name):
 		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME")
-			.format([method_name, object.name]))
+			.format([method_name]))
 		return null
 
 	var trans_init := XDUT_GlideMotionTransitionInit.new()
@@ -140,8 +148,12 @@ static func tween(
 		return null
 	if property_name.is_empty():
 		push_error(internal_get_motion_canonical()
-			.translate(&"ERROR_BAD_PROPERTY_NAME_EMPTY"))
+			.translate(&"ERROR_EMPTY_PROPERTY_NAME"))
 		return null
+	#if not property_name in object:
+	#	push_error(internal_get_motion_canonical()
+	#		.translate(&"ERROR_BAD_PROPERTY_NAME"))
+	#	return null
 
 	var trans_init := XDUT_TweenMotionTransitionInit.new()
 	return TweenMotionExpression.new(
@@ -166,12 +178,12 @@ static func tween_method(
 		return null
 	if method_name.is_empty():
 		push_error(internal_get_motion_canonical()
-			.translate(&"ERROR_BAD_METHOD_NAME_EMPTY"))
+			.translate(&"ERROR_EMPTY_METHOD_NAME"))
 		return null
 	if not object.has_method(method_name):
 		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME")
-			.format([method_name, object.name]))
+			.format([method_name]))
 		return null
 
 	var trans_init := XDUT_TweenMotionTransitionInit.new()
@@ -197,8 +209,12 @@ static func cancel(
 		return null
 	if property_name.is_empty():
 		push_error(internal_get_motion_canonical()
-			.translate(&"ERROR_BAD_PROPERTY_NAME_EMPTY"))
+			.translate(&"ERROR_EMPTY_PROPERTY_NAME"))
 		return null
+	#if not property_name in object:
+	#	push_error(internal_get_motion_canonical()
+	#		.translate(&"ERROR_BAD_PROPERTY_NAME"))
+	#	return null
 
 	var trans_init := XDUT_CancelMotionTransitionInit.new()
 	return CancelMotionExpression.new(
@@ -223,12 +239,12 @@ static func cancel_method(
 		return null
 	if method_name.is_empty():
 		push_error(internal_get_motion_canonical()
-			.translate(&"ERROR_BAD_METHOD_NAME_EMPTY"))
+			.translate(&"ERROR_EMPTY_METHOD_NAME"))
 		return null
 	if not object.has_method(method_name):
 		push_error(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_METHOD_NAME")
-			.format([method_name, object.name]))
+			.format([method_name]))
 		return null
 
 	var trans_init := XDUT_CancelMotionTransitionInit.new()
@@ -252,5 +268,5 @@ static func _set_preset(preset_name: String, trans_init: XDUT_MotionTransitionIn
 	if not preset_mapper.apply(preset_name, trans_init):
 		push_warning(internal_get_motion_canonical()
 			.translate(&"ERROR_BAD_PRESET_NAME")
-			.format(preset_name))
+			.format([preset_name]))
 		return

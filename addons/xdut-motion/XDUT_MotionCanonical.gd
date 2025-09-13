@@ -70,27 +70,32 @@ func attach_method(
 #-------------------------------------------------------------------------------
 
 const _TRANSLATION_EN: Dictionary[StringName, String] = {
-	&"ERROR_BAD_OBJECT": "Bad object.",
-	&"ERROR_BAD_PROPERTY_NAME_EMPTY": "Bad property name.",
-	&"ERROR_BAD_METHOD_NAME_EMPTY": "Bad method name.",
-	&"ERROR_BAD_METHOD_NAME": "Bad method name: {0} ({1})",
-	&"ERROR_BAD_PRESET_NAME": "Bad preset name: {0}",
-	&"ERROR_PRESET_PROPERTY_CANNOT_CHANGE_AT_RUNTIME": "Preset property cannot be changed at runtime: {0}",
-	&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO": "Value must be greater than or equal to zero: {0}",
-	&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO": "Value must be greater than zero: {0}",
-	&"ERROR_TYPE_DOES_NOT_MATCH_THE_STATE_REQUIREMENT": "Type (or size if is it array) does not match the state requirement: {0}",
+	&"ERROR_CANNOT_CHANGE_PRESET_NAME_AT_RUNTIME": "Preset property '{0}' cannot be changed at runtime.",
+	&"ERROR_DOES_NOT_MATCH_THE_STATE_REQUIREMENT": "State property '{0}' (or size if array) does not match the requirement.",
+	&"ERROR_EMPTY_METHOD_NAME": "Method name is empty.",
+	&"ERROR_EMPTY_PROPERTY_NAME": "Property name is empty.",
+	&"ERROR_BAD_OBJECT": "The specified object is invalid.",
+	&"ERROR_BAD_METHOD_NAME": "Invalid method '{0}' specified.",
+	&"ERROR_BAD_PRESET_NAME": "Invalid preset '{0}' specified.",
+	&"ERROR_BAD_PROPERTY_NAME": "Invalid property '{0}' specified.",
+	&"ERROR_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO": "Value must be greater than or equal to zero: {0}",
+	&"ERROR_MUST_BE_GREATER_THAN_ZERO": "Value must be greater than zero: {0}",
 }
 
+#push_warning("Preset name is empty at index ", preset_index, " on node '", name, "', skipped this preset.")
+
 const _TRANSLATION_JA: Dictionary[StringName, String] = {
-	&"ERROR_BAD_OBJECT": "無効なオブジェクト。",
-	&"ERROR_BAD_PROPERTY_NAME": "無効なプロパティ名。",
-	&"ERROR_BAD_METHOD_NAME_EMPTY": "無効なメソッド名。",
-	&"ERROR_BAD_METHOD_NAME": "無効なメソッド名: {0} ({1})",
-	&"ERROR_BAD_PRESET_NAME": "無効なプリセット名: {0}",
-	&"ERROR_PRESET_PROPERTY_CANNOT_CHANGE_AT_RUNTIME": "プリセットプロパティは実行時に変更できません: {0}",
-	&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO": "値はゼロ以上でなければなりません: {0}",
-	&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO": "値はゼロより大きくなければなりません: {0}",
-	&"ERROR_TYPE_DOES_NOT_MATCH_THE_STATE_REQUIREMENT": "型 (配列の場合はサイズ) がステートの要件と一致しません: {0}",
+	&"ERROR_CANNOT_CHANGE_PRESET_NAME_AT_RUNTIME": "プリセットプロパティ '{0}' は実行時に変更できません。",
+	&"ERROR_DOES_NOT_MATCH_THE_STATE_REQUIREMENT": "ステートプロパティ '{0}' (配列の場合はサイズ) が要件と一致しません。",
+	&"ERROR_EMPTY_METHOD_NAME": "メソッド名が空です。",
+	&"ERROR_EMPTY_PRESET_NAME": "プリセットノード '{1}' に含まれる {0} 番目のプリセット名が空です。スキップされました。",
+	&"ERROR_EMPTY_PROPERTY_NAME": "プロパティ名が空です。",
+	&"ERROR_BAD_OBJECT": "指定したオブジェクトは無効です。",
+	&"ERROR_BAD_METHOD_NAME": "不正なメソッド '{0}' を指定しました。",
+	&"ERROR_BAD_PRESET_NAME": "不正なプリセット '{0}' を指定しました。",
+	&"ERROR_BAD_PROPERTY_NAME": "不正なプロパティ '{0}' を指定しました。",
+	&"ERROR_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO": "値はゼロ以上でなければなりません: {0}",
+	&"ERROR_MUST_BE_GREATER_THAN_ZERO": "値はゼロより大きくなければなりません: {0}",
 }
 
 var _translation_domain := TranslationDomain.new()

@@ -14,7 +14,7 @@ func preset(value: String) -> GlideMotionExpression:
 func delay(value: float) -> GlideMotionExpression:
 	if value < 0.0:
 		push_warning(internal_get_motion_canonical()
-			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
+			.translate(&"ERROR_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
 			.format([value]))
 		value = 0.0
 	_trans_init.delay = value
@@ -40,7 +40,7 @@ func process_physics() -> GlideMotionExpression:
 func set_power(value: float) -> GlideMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning(internal_get_motion_canonical()
-			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.translate(&"ERROR_MUST_BE_GREATER_THAN_ZERO")
 			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.power = value
@@ -50,7 +50,7 @@ func set_power(value: float) -> GlideMotionExpression:
 func set_time_constant(value: float) -> GlideMotionExpression:
 	if value < 0.0:
 		push_warning(internal_get_motion_canonical()
-			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
+			.translate(&"ERROR_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO")
 			.format([value]))
 		value = 0.0
 	_trans_init.time_constant = value
@@ -60,7 +60,7 @@ func set_time_constant(value: float) -> GlideMotionExpression:
 func set_rest_delta(value: float) -> GlideMotionExpression:
 	if value < XDUT_MotionTransition.EPSILON:
 		push_warning(internal_get_motion_canonical()
-			.translate(&"ERROR_VALUE_MUST_BE_GREATER_THAN_ZERO")
+			.translate(&"ERROR_MUST_BE_GREATER_THAN_ZERO")
 			.format([value]))
 		value = XDUT_MotionTransition.EPSILON
 	_trans_init.rest_delta = value
