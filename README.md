@@ -10,6 +10,13 @@ English | [日本語](README.ja_JP.md)
 
 This add-on animates nodes with Tween, smooth reschedulable spring and gliding.
 
+```gdscript
+await Motion \
+	.spring($Button, "position") \
+	.to(Vector2(128.0, 128.0)) \
+	.wait()
+```
+
 <br />
 
 ## Quick start
