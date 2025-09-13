@@ -21,7 +21,7 @@ This add-on animates nodes with Tween, smooth reschedulable spring and gliding.
 3. And enable XDUT Motion from your project settings.
 
 > [!IMPORTANT]
-> This addon requires [XDUT Task](https://github.com/ydipeepo/xdut-task) (1.5.0 ~) installed.
+> This addon requires [XDUT Task](https://github.com/ydipeepo/xdut-task) (1.5.0~) installed.
 
 #### Reference
 

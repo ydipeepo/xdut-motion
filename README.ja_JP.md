@@ -19,7 +19,7 @@
 3. プロジェクト設定から XDUT Motion を有効にします。
 
 > [!IMPORTANT]
-> このアドオンの動作には [XDUT Task](https://github.com/ydipeepo/xdut-task) が必要です。
+> このアドオンの動作には [XDUT Task](https://github.com/ydipeepo/xdut-task) (1.5.0~) が必要です。
 
 #### リファレンス
 
