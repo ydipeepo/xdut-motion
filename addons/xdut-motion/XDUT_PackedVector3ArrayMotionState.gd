@@ -32,8 +32,24 @@ func set_initial_position(value: Variant) -> void:
 		TYPE_NIL:
 			for index: int in _element_count:
 				_initial_position[index] = _position[index]
+		TYPE_ARRAY:
+			if can_set_initial_position(value):
+				var read := 0
+				for index: int in _element_count:
+					match typeof(value[read]):
+						TYPE_INT, \
+						TYPE_FLOAT:
+							_initial_position[index] = Vector3(
+								value[read + 0],
+								value[read + 1],
+								value[read + 2])
+							read += 3
+						TYPE_VECTOR3, \
+						TYPE_VECTOR3I:
+							_initial_position[index] = Vector3(value[read])
+							read += 1
 		TYPE_PACKED_VECTOR3_ARRAY:
-			if value.size() == _element_count:
+			if can_set_initial_position(value):
 				for index: int in _element_count:
 					_initial_position[index] = value[index]
 		TYPE_CALLABLE:
@@ -55,8 +71,24 @@ func set_final_position(value: Variant) -> void:
 		TYPE_NIL:
 			for index: int in _element_count:
 				_final_position[index] = _position[index]
-		TYPE_PACKED_VECTOR2_ARRAY:
-			if value.size() == _element_count:
+		TYPE_ARRAY:
+			if can_set_final_position(value):
+				var read := 0
+				for index: int in _element_count:
+					match typeof(value[read]):
+						TYPE_INT, \
+						TYPE_FLOAT:
+							_final_position[index] = Vector3(
+								value[read + 0],
+								value[read + 1],
+								value[read + 2])
+							read += 3
+						TYPE_VECTOR3, \
+						TYPE_VECTOR3I:
+							_final_position[index] = Vector3(value[read])
+							read += 1
+		TYPE_PACKED_VECTOR3_ARRAY:
+			if can_set_final_position(value):
 				for index: int in _element_count:
 					_final_position[index] = value[index]
 		TYPE_CALLABLE:
@@ -86,8 +118,24 @@ func set_initial_velocity(value: Variant) -> void:
 		TYPE_NIL:
 			for index: int in _element_count * 3:
 				_initial_velocity[index] = 0.0 if _rest[index] else _velocity[index]
+		TYPE_ARRAY:
+			if can_set_initial_velocity(value):
+				var write := 0
+				for index: int in value.size():
+					match typeof(value[index]):
+						TYPE_INT, \
+						TYPE_FLOAT:
+							_initial_velocity[write] = value[index]
+							write += 1
+						TYPE_VECTOR3, \
+						TYPE_VECTOR3I:
+							var vector: Vector3 = value[index]
+							_initial_velocity[write + 0] = vector.x
+							_initial_velocity[write + 1] = vector.y
+							_initial_velocity[write + 2] = vector.z
+							write += 3
 		TYPE_PACKED_VECTOR3_ARRAY:
-			if value.size() == _element_count:
+			if can_set_initial_velocity(value):
 				for index: int in _element_count:
 					var vector: Vector3 = value[index]
 					_initial_velocity[index * 3 + 0] = vector.x
@@ -116,6 +164,26 @@ func can_set_initial_position(value: Variant) -> bool:
 	match typeof(value):
 		TYPE_NIL:
 			return true
+		TYPE_ARRAY:
+			if _element_count <= value.size():
+				var valid := true
+				var count := 0
+				for index: int in value.size():
+					match typeof(value[index]):
+						TYPE_INT, \
+						TYPE_FLOAT:
+							count += 1
+						TYPE_VECTOR3, \
+						TYPE_VECTOR3I:
+							if count % 3 != 0:
+								valid = false
+								break
+							count += 3
+						_:
+							valid = false
+							break
+				if valid and count / 3 == _element_count:
+					return true
 		TYPE_PACKED_VECTOR3_ARRAY:
 			if value.size() == _element_count:
 				return true
@@ -128,7 +196,27 @@ func can_set_final_position(value: Variant) -> bool:
 	match typeof(value):
 		TYPE_NIL:
 			return true
-		TYPE_PACKED_VECTOR2_ARRAY:
+		TYPE_ARRAY:
+			if _element_count <= value.size():
+				var valid := true
+				var count := 0
+				for index: int in value.size():
+					match typeof(value[index]):
+						TYPE_INT, \
+						TYPE_FLOAT:
+							count += 1
+						TYPE_VECTOR3, \
+						TYPE_VECTOR3I:
+							if count % 3 != 0:
+								valid = false
+								break
+							count += 3
+						_:
+							valid = false
+							break
+				if valid and count / 3 == _element_count:
+					return true
+		TYPE_PACKED_VECTOR3_ARRAY:
 			if value.size() == _element_count:
 				return true
 		TYPE_CALLABLE:
@@ -140,6 +228,26 @@ func can_set_initial_velocity(value: Variant) -> bool:
 	match typeof(value):
 		TYPE_NIL:
 			return true
+		TYPE_ARRAY:
+			if _element_count <= value.size():
+				var valid := true
+				var count := 0
+				for index: int in value.size():
+					match typeof(value[index]):
+						TYPE_INT, \
+						TYPE_FLOAT:
+							count += 1
+						TYPE_VECTOR3, \
+						TYPE_VECTOR3I:
+							if count % 3 != 0:
+								valid = false
+								break
+							count += 3
+						_:
+							valid = false
+							break
+				if valid and count / 3 == _element_count:
+					return true
 		TYPE_PACKED_VECTOR3_ARRAY:
 			if value.size() == _element_count:
 				return true

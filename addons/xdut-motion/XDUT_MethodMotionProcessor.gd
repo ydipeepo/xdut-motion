@@ -190,6 +190,20 @@ func reset_state(
 				state = XDUT_PackedColorArrayMotionState.new(size)
 			elif state is not XDUT_PackedColorArrayMotionState or state.get_element_count() != size:
 				state = null
+		[TYPE_PACKED_VECTOR4_ARRAY, TYPE_NIL, TYPE_NIL], \
+		[TYPE_NIL, TYPE_PACKED_VECTOR4_ARRAY, TYPE_NIL], \
+		[TYPE_PACKED_VECTOR4_ARRAY, TYPE_PACKED_VECTOR4_ARRAY, TYPE_NIL], \
+		[TYPE_NIL, TYPE_NIL, TYPE_PACKED_VECTOR4_ARRAY], \
+		[TYPE_PACKED_VECTOR4_ARRAY, TYPE_NIL, TYPE_PACKED_VECTOR4_ARRAY], \
+		[TYPE_NIL, TYPE_PACKED_VECTOR4_ARRAY, TYPE_PACKED_VECTOR4_ARRAY], \
+		[TYPE_PACKED_VECTOR4_ARRAY, TYPE_PACKED_VECTOR4_ARRAY, TYPE_PACKED_VECTOR4_ARRAY]:
+			var size = _get_size(ip, fp, iv, ip_type, fp_type, iv_type)
+			if size == null:
+				state = null
+			elif state == null:
+				state = XDUT_PackedVector4ArrayMotionState.new(size)
+			elif state is not XDUT_PackedVector4ArrayMotionState or state.get_element_count() != size:
+				state = null
 	if state != null:
 		if ip != null:
 			state.set_position(ip)

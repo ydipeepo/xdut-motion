@@ -1,3 +1,4 @@
+@abstract
 class_name XDUT_MotionTransitionInit
 
 #-------------------------------------------------------------------------------
@@ -14,10 +15,5 @@ var delay: float
 #	METHODS
 #-------------------------------------------------------------------------------
 
-func init(previous_trans: XDUT_MotionTransition) -> XDUT_MotionTransition:
-	#
-	# 継承先で実装する必要があります。
-	#
-
-	assert(false)
-	return null
+@abstract
+func init(previous_trans: XDUT_MotionTransition) -> XDUT_MotionTransition

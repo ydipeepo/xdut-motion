@@ -5,8 +5,8 @@ class_name XDUT_TweenMotionTransition extends XDUT_MotionTransition
 #-------------------------------------------------------------------------------
 
 const DEFAULT_DURATION := 1.0
-const DEFAULT_EASE_TYPE := Tween.EASE_IN_OUT
-const DEFAULT_TRANS_TYPE := Tween.TRANS_LINEAR
+const DEFAULT_EASE_TYPE: int = Tween.EASE_IN_OUT
+const DEFAULT_TRANS_TYPE: int = Tween.TRANS_LINEAR
 
 #-------------------------------------------------------------------------------
 #	METHODS

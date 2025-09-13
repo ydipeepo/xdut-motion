@@ -4,6 +4,9 @@ extends Node
 #	METHODS
 #-------------------------------------------------------------------------------
 
+func translate(translation_key: StringName) -> StringName:
+	return _translation_domain.translate(translation_key)
+
 func get_preset_mapper() -> XDUT_MotionPresetMapper:
 	return _preset_mapper
 
@@ -66,9 +69,50 @@ func attach_method(
 
 #-------------------------------------------------------------------------------
 
+const _TRANSLATION_EN: Dictionary[StringName, String] = {
+	&"ERROR_CANNOT_CHANGE_PRESET_NAME_AT_RUNTIME": "Preset property '{0}' cannot be changed at runtime.",
+	&"ERROR_DOES_NOT_MATCH_THE_STATE_REQUIREMENT": "State property '{0}' (or size if array) does not match the requirement.",
+	&"ERROR_EMPTY_METHOD_NAME": "Method name is empty.",
+	&"ERROR_EMPTY_PROPERTY_NAME": "Property name is empty.",
+	&"ERROR_BAD_OBJECT": "The specified object is invalid.",
+	&"ERROR_BAD_METHOD_NAME": "Invalid method '{0}' specified.",
+	&"ERROR_BAD_PRESET_NAME": "Invalid preset '{0}' specified.",
+	&"ERROR_BAD_PROPERTY_NAME": "Invalid property '{0}' specified.",
+	&"ERROR_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO": "Value must be greater than or equal to zero: {0}",
+	&"ERROR_MUST_BE_GREATER_THAN_ZERO": "Value must be greater than zero: {0}",
+}
+
+#push_warning("Preset name is empty at index ", preset_index, " on node '", name, "', skipped this preset.")
+
+const _TRANSLATION_JA: Dictionary[StringName, String] = {
+	&"ERROR_CANNOT_CHANGE_PRESET_NAME_AT_RUNTIME": "プリセットプロパティ '{0}' は実行時に変更できません。",
+	&"ERROR_DOES_NOT_MATCH_THE_STATE_REQUIREMENT": "ステートプロパティ '{0}' (配列の場合はサイズ) が要件と一致しません。",
+	&"ERROR_EMPTY_METHOD_NAME": "メソッド名が空です。",
+	&"ERROR_EMPTY_PRESET_NAME": "プリセットノード '{1}' に含まれる {0} 番目のプリセット名が空です。スキップされました。",
+	&"ERROR_EMPTY_PROPERTY_NAME": "プロパティ名が空です。",
+	&"ERROR_BAD_OBJECT": "指定したオブジェクトは無効です。",
+	&"ERROR_BAD_METHOD_NAME": "不正なメソッド '{0}' を指定しました。",
+	&"ERROR_BAD_PRESET_NAME": "不正なプリセット '{0}' を指定しました。",
+	&"ERROR_BAD_PROPERTY_NAME": "不正なプロパティ '{0}' を指定しました。",
+	&"ERROR_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO": "値はゼロ以上でなければなりません: {0}",
+	&"ERROR_MUST_BE_GREATER_THAN_ZERO": "値はゼロより大きくなければなりません: {0}",
+}
+
+var _translation_domain := TranslationDomain.new()
 var _processor_retention_duration: float
 var _preset_mapper: XDUT_MotionPresetMapper
 var _timer: XDUT_MotionTimer
+
+func _add_translation(
+	locale: StringName,
+	translation_map: Dictionary[StringName, String]) -> void:
+
+	var translation := Translation.new()
+	translation.locale = locale
+	for translation_key: StringName in translation_map:
+		translation.add_message(translation_key, translation_map[translation_key])
+
+	_translation_domain.add_translation(translation)
 
 func _get_processor(target: Node, target_key: String) -> XDUT_MotionProcessor:
 	assert(target != null)
@@ -95,6 +139,9 @@ func _collect_preset_banks(
 			_collect_preset_banks(node, preset_banks)
 
 func _enter_tree() -> void:
+	_add_translation(&"en", _TRANSLATION_EN)
+	_add_translation(&"ja", _TRANSLATION_JA)
+
 	_processor_retention_duration = ProjectSettings.get_setting("xdut/motion/processor/retention_duration", 5.0)
 	
 	_preset_mapper = XDUT_MotionPresetMapper.new()

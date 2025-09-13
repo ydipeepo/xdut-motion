@@ -1,4 +1,4 @@
-class_name XDUT_PackedVector2ArrayMotionState extends XDUT_MotionState
+class_name XDUT_PackedVector4ArrayMotionState extends XDUT_MotionState
 
 #-------------------------------------------------------------------------------
 #	METHODS
@@ -8,24 +8,24 @@ func get_element_count() -> int:
 	return _element_count
 
 func get_element_size() -> int:
-	return 2
+	return 4
 
 func set_position(value: Variant) -> void:
-	assert(value is PackedVector2Array)
+	assert(value is PackedVector4Array)
 	assert(value.size() == _element_count)
-	for index: int in _element_count:
+	for index in _element_count:
 		_position[index] = value[index]
 
 func set_position_at(index: int, value: float) -> void:
-	assert(0 <= index and index < _element_count * 2)
-	_position[index / 2][index % 2] = value
+	assert(0 <= index and index < _element_count * 4)
+	_position[index / 4][index % 4] = value
 
 func get_position() -> Variant:
 	return _position
 
 func get_position_at(index: int) -> float:
-	assert(0 <= index and index < _element_count * 2)
-	return _position[index / 2][index % 2]
+	assert(0 <= index and index < _element_count * 4)
+	return _position[index / 4][index % 4]
 
 func set_initial_position(value: Variant) -> void:
 	match typeof(value):
@@ -39,15 +39,17 @@ func set_initial_position(value: Variant) -> void:
 					match typeof(value[read]):
 						TYPE_INT, \
 						TYPE_FLOAT:
-							_initial_position[index] = Vector2(
+							_initial_position[index] = Vector4(
 								value[read + 0],
-								value[read + 1])
-							read += 2
-						TYPE_VECTOR2, \
-						TYPE_VECTOR2I:
-							_initial_position[index] = Vector2(value[read])
+								value[read + 1],
+								value[read + 2],
+								value[read + 3])
+							read += 4
+						TYPE_VECTOR4, \
+						TYPE_VECTOR4I:
+							_initial_position[index] = Vector4(value[read])
 							read += 1
-		TYPE_PACKED_VECTOR2_ARRAY:
+		TYPE_PACKED_VECTOR4_ARRAY:
 			if can_set_initial_position(value):
 				for index: int in _element_count:
 					_initial_position[index] = value[index]
@@ -55,15 +57,15 @@ func set_initial_position(value: Variant) -> void:
 			set_initial_position(value.call())
 
 func set_initial_position_at(index: int, value: float) -> void:
-	assert(0 <= index and index < _element_count * 2)
-	_initial_position[index / 2][index % 2] = value
+	assert(0 <= index and index < _element_count * 4)
+	_initial_position[index / 4][index % 4] = value
 
 func get_initial_position() -> Variant:
 	return _initial_position
 
 func get_initial_position_at(index: int) -> float:
-	assert(0 <= index and index < _element_count * 2)
-	return _initial_position[index / 2][index % 2]
+	assert(0 <= index and index < _element_count * 4)
+	return _initial_position[index / 4][index % 4]
 
 func set_final_position(value: Variant) -> void:
 	match typeof(value):
@@ -77,15 +79,17 @@ func set_final_position(value: Variant) -> void:
 					match typeof(value[read]):
 						TYPE_INT, \
 						TYPE_FLOAT:
-							_final_position[index] = Vector2(
+							_final_position[index] = Vector4(
 								value[read + 0],
-								value[read + 1])
-							read += 2
-						TYPE_VECTOR2, \
-						TYPE_VECTOR2I:
-							_final_position[index] = Vector2(value[read])
+								value[read + 1],
+								value[read + 2],
+								value[read + 3])
+							read += 4
+						TYPE_VECTOR4, \
+						TYPE_VECTOR4I:
+							_final_position[index] = Vector4(value[read])
 							read += 1
-		TYPE_PACKED_VECTOR2_ARRAY:
+		TYPE_PACKED_VECTOR4_ARRAY:
 			if can_set_final_position(value):
 				for index: int in _element_count:
 					_final_position[index] = value[index]
@@ -93,28 +97,28 @@ func set_final_position(value: Variant) -> void:
 			set_final_position(value.call())
 
 func set_final_position_at(index: int, value: float) -> void:
-	assert(0 <= index and index < _element_count * 2)
-	_final_position[index / 2][index % 2] = value
+	assert(0 <= index and index < _element_count * 4)
+	_final_position[index / 4][index % 4] = value
 
 func get_final_position() -> Variant:
 	return _final_position
 
 func get_final_position_at(index: int) -> float:
-	assert(0 <= index and index < _element_count * 2)
-	return _final_position[index / 2][index % 2]
+	assert(0 <= index and index < _element_count * 4)
+	return _final_position[index / 4][index % 4]
 
 func set_velocity_at(index: int, value: float) -> void:
-	assert(0 <= index and index < _element_count * 2)
+	assert(0 <= index and index < _element_count * 4)
 	_velocity[index] = value
 
 func get_velocity_at(index: int) -> float:
-	assert(0 <= index and index < _element_count * 2)
+	assert(0 <= index and index < _element_count * 4)
 	return _velocity[index]
 
 func set_initial_velocity(value: Variant) -> void:
 	match typeof(value):
 		TYPE_NIL:
-			for index: int in _element_count * 2:
+			for index: int in _element_count * 4:
 				_initial_velocity[index] = 0.0 if _rest[index] else _velocity[index]
 		TYPE_ARRAY:
 			if can_set_initial_velocity(value):
@@ -125,35 +129,39 @@ func set_initial_velocity(value: Variant) -> void:
 						TYPE_FLOAT:
 							_initial_velocity[write] = value[index]
 							write += 1
-						TYPE_VECTOR2, \
-						TYPE_VECTOR2I:
-							var vector: Vector2 = value[index]
+						TYPE_VECTOR4, \
+						TYPE_VECTOR4I:
+							var vector: Vector4 = value[index]
 							_initial_velocity[write + 0] = vector.x
 							_initial_velocity[write + 1] = vector.y
-							write += 2
-		TYPE_PACKED_VECTOR2_ARRAY:
+							_initial_velocity[write + 2] = vector.z
+							_initial_velocity[write + 3] = vector.w
+							write += 4
+		TYPE_PACKED_VECTOR4_ARRAY:
 			if can_set_initial_velocity(value):
 				for index: int in _element_count:
-					var vector: Vector2 = value[index]
-					_initial_velocity[index * 2 + 0] = vector.x
-					_initial_velocity[index * 2 + 1] = vector.y
+					var vector: Vector4 = value[index]
+					_initial_velocity[index * 3 + 0] = vector.x
+					_initial_velocity[index * 3 + 1] = vector.y
+					_initial_velocity[index * 3 + 2] = vector.z
+					_initial_velocity[index * 3 + 3] = vector.w
 		TYPE_CALLABLE:
 			set_initial_velocity(value.call())
 
 func set_initial_velocity_at(index: int, value: float) -> void:
-	assert(0 <= index and index < _element_count * 2)
+	assert(0 <= index and index < _element_count * 4)
 	_initial_velocity[index] = value
 
 func get_initial_velocity_at(index: int) -> float:
-	assert(0 <= index and index < _element_count * 2)
+	assert(0 <= index and index < _element_count * 4)
 	return _initial_velocity[index]
 
 func set_rest_at(index: int, value: bool) -> void:
-	assert(0 <= index and index < _element_count * 2)
+	assert(0 <= index and index < _element_count * 4)
 	_rest[index] = value
 
 func get_rest_at(index: int) -> bool:
-	assert(0 <= index and index < _element_count * 2)
+	assert(0 <= index and index < _element_count * 4)
 	return _rest[index]
 
 func can_set_initial_position(value: Variant) -> bool:
@@ -169,18 +177,18 @@ func can_set_initial_position(value: Variant) -> bool:
 						TYPE_INT, \
 						TYPE_FLOAT:
 							count += 1
-						TYPE_VECTOR2, \
-						TYPE_VECTOR2I:
-							if count % 2 != 0:
+						TYPE_VECTOR4, \
+						TYPE_VECTOR4I:
+							if count % 4 != 0:
 								valid = false
 								break
-							count += 2
+							count += 4
 						_:
 							valid = false
 							break
-				if valid and count / 2 == _element_count:
+				if valid and count / 4 == _element_count:
 					return true
-		TYPE_PACKED_VECTOR2_ARRAY:
+		TYPE_PACKED_VECTOR4_ARRAY:
 			if value.size() == _element_count:
 				return true
 		TYPE_CALLABLE:
@@ -201,18 +209,18 @@ func can_set_final_position(value: Variant) -> bool:
 						TYPE_INT, \
 						TYPE_FLOAT:
 							count += 1
-						TYPE_VECTOR2, \
-						TYPE_VECTOR2I:
-							if count % 2 != 0:
+						TYPE_VECTOR4, \
+						TYPE_VECTOR4I:
+							if count % 4 != 0:
 								valid = false
 								break
-							count += 2
+							count += 4
 						_:
 							valid = false
 							break
-				if valid and count / 2 == _element_count:
+				if valid and count / 4 == _element_count:
 					return true
-		TYPE_PACKED_VECTOR2_ARRAY:
+		TYPE_PACKED_VECTOR4_ARRAY:
 			if value.size() == _element_count:
 				return true
 		TYPE_CALLABLE:
@@ -233,18 +241,18 @@ func can_set_initial_velocity(value: Variant) -> bool:
 						TYPE_INT, \
 						TYPE_FLOAT:
 							count += 1
-						TYPE_VECTOR2, \
-						TYPE_VECTOR2I:
-							if count % 2 != 0:
+						TYPE_VECTOR4, \
+						TYPE_VECTOR4I:
+							if count % 4 != 0:
 								valid = false
 								break
-							count += 2
+							count += 4
 						_:
 							valid = false
 							break
-				if valid and count / 2 == _element_count:
+				if valid and count / 4 == _element_count:
 					return true
-		TYPE_PACKED_VECTOR2_ARRAY:
+		TYPE_PACKED_VECTOR4_ARRAY:
 			if value.size() == _element_count:
 				return true
 		TYPE_CALLABLE:
@@ -254,9 +262,9 @@ func can_set_initial_velocity(value: Variant) -> bool:
 
 #-------------------------------------------------------------------------------
 
-var _position: PackedVector2Array
-var _initial_position: PackedVector2Array
-var _final_position: PackedVector2Array
+var _position: PackedVector4Array
+var _initial_position: PackedVector4Array
+var _final_position: PackedVector4Array
 var _velocity: Array[float]
 var _initial_velocity: Array[float]
 var _rest: Array[bool]
@@ -268,7 +276,7 @@ func _init(element_count: int) -> void:
 	_position.resize(_element_count)
 	_initial_position.resize(_element_count)
 	_final_position.resize(_element_count)
-	_velocity.resize(_element_count * 2)
-	_initial_velocity.resize(_element_count * 2)
-	_rest.resize(_element_count * 2)
+	_velocity.resize(_element_count * 4)
+	_initial_velocity.resize(_element_count * 4)
+	_rest.resize(_element_count * 4)
 	_rest.fill(true)

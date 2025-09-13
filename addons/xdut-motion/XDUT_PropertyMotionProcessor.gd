@@ -123,6 +123,11 @@ func reset_state(
 				state = XDUT_PackedColorArrayMotionState.new(value.size())
 			elif state is not XDUT_PackedColorArrayMotionState or state.get_element_count() != value.size():
 				state = null
+		TYPE_PACKED_VECTOR4_ARRAY:
+			if state == null:
+				state = XDUT_PackedVector4ArrayMotionState.new(value.size())
+			elif state is not XDUT_PackedVector4ArrayMotionState or state.get_element_count() != value.size():
+				state = null
 	if state != null:
 		state.set_position(value)
 	return state
