@@ -8,6 +8,8 @@
 
 [![Release](https://badgen.net/github/release/ydipeepo/xdut-motion)](https://github.com/ydipeepo/xdut-motion/releases) [![MIT](https://badgen.net/github/license/ydipeepo/xdut-motion)](https://github.com/ydipeepo/xdut-motion/LICENSE)
 
+継続可能なバネや滑走アニメーション、加速度の情報を持った Tween を含む、ノードをアニメーションさせるためのアドオンです。
+
 <br />
 
 ## 使い方
