@@ -21,14 +21,14 @@ await Motion \
 
 ## 使い方
 
+> [!IMPORTANT]
+> このアドオンの動作には [XDUT Task](https://github.com/ydipeepo/xdut-task) (1.5.0~) が必要です。
+
 #### アドオンの追加
 
 1. `git clone https://github.com/ydipeepo/xdut-motion.git` し、
 2. `addons/xdut-motion` をプロジェクトに複製し、
 3. プロジェクト設定から XDUT Motion を有効にします。
-
-> [!IMPORTANT]
-> このアドオンの動作には [XDUT Task](https://github.com/ydipeepo/xdut-task) (1.5.0~) が必要です。
 
 #### リファレンス
 
