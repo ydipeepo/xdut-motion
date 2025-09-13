@@ -4,7 +4,9 @@ English | [日本語](README.ja_JP.md)
 
 <br />
 
-# 🧩 XDUT Motion
+# ![XDUT Task](assets/texture/icon.png) XDUT Motion
+
+[![Release](https://badgen.net/github/release/ydipeepo/xdut-motion)](https://github.com/ydipeepo/xdut-motion/releases) [![MIT](https://badgen.net/github/license/ydipeepo/xdut-motion)](https://github.com/ydipeepo/xdut-motion/LICENSE)
 
 This add-on animates nodes with Tween, smooth reschedulable spring and gliding.
 
@@ -12,29 +14,16 @@ This add-on animates nodes with Tween, smooth reschedulable spring and gliding.
 
 ## Quick start
 
-#### Checking the demo
-
-1. `git clone https://github.com/ydipeepo/xdut-motion.git` or [download release](https://github.com/ydipeepo/xdut-motion/release).
-2. Then open XDUT Motion and run it.
-
 #### Installation
 
 1. `git clone https://github.com/ydipeepo/xdut-motion.git` or [download release](https://github.com/ydipeepo/xdut-motion/release).
 2. Then copy `addons/xdut-motion` directory into your project.
 3. And enable XDUT Motion from your project settings.
 
-> [!TIP]
-> This add-on is compat with Godot Engine and Redot Engine.
->
-> * Godot Engine 4.4 ~
-> * Redot Engine 4.3 ~
-
 > [!IMPORTANT]
-> This addon requires [XDUT Task](https://github.com/ydipeepo/xdut-task) installed.
+> This addon requires [XDUT Task](https://github.com/ydipeepo/xdut-task) (1.5.0 ~) installed.
 
-<br />
-
-## Reference
+#### Reference
 
 📖 [Wiki](https://github.com/ydipeepo/xdut-motion/wiki) (Google Translated)
 

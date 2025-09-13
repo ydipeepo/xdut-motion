@@ -4,46 +4,26 @@
 
 <br />
 
-# 🧩 XDUT Motion
+# ![XDUT Task](assets/texture/icon.png) XDUT Motion
 
-継続可能なバネや滑走アニメーション、加速度の情報を持った Tween を含む、<br />
-ノードをアニメーションさせるためのアドオンです。
+[![Release](https://badgen.net/github/release/ydipeepo/xdut-motion)](https://github.com/ydipeepo/xdut-motion/releases) [![MIT](https://badgen.net/github/license/ydipeepo/xdut-motion)](https://github.com/ydipeepo/xdut-motion/LICENSE)
 
 <br />
 
-## インストール
+## 使い方
 
-#### デモを確認する場合
-
-1. `git clone https://github.com/ydipeepo/xdut-motion.git` し、
-2. プロジェクトを開いて実行します。
-
-#### プロジェクトにアドオンを追加する場合
+#### アドオンの追加
 
 1. `git clone https://github.com/ydipeepo/xdut-motion.git` し、
 2. `addons/xdut-motion` をプロジェクトに複製し、
-3. プロジェクト設定から XDUT Task を有効にします。
-
-> [!TIP]
-> このアドオンは Godot Engine 及び Redot Engine に対応しています。
->
-> * Godot Engine 4.4 ~
-> * Redot Engine 4.3 ~
+3. プロジェクト設定から XDUT Motion を有効にします。
 
 > [!IMPORTANT]
 > このアドオンの動作には [XDUT Task](https://github.com/ydipeepo/xdut-task) が必要です。
 
-<br />
-
-## リファレンス
+#### リファレンス
 
 📖 [Wiki](https://github.com/ydipeepo/xdut-motion/wiki) にまとめてあります。
-
-<br />
-
-## バグの報告など
-
-バグの報告やドキュメント翻訳、改善の提案など歓迎いたします。
 
 <br />
 
